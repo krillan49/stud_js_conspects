@@ -59,8 +59,8 @@ switch (x) { // Проверяем переменную x
 	case 1: // Если переменная будет равна 1, то здесь сработает код
 		// Может быть множество строк, а не только одна
 		console.log("Переменная равна 1");
-		break; // Указываем конец для кода для этой проверки
-	case 56: // те вместо { } в case используется : break;
+		break; // Указываем конец для кода для этой проверки, те вместо { } в case используется : break;
+	case 56:
 		console.log("Переменная равна 56");
 		break;
 	default: // аналог else для оператора case
@@ -70,7 +70,23 @@ switch (x) { // Проверяем переменную x
 //=>'Что-то другое'
 
 
+// Сокращенная запись
+switch ( month ){
+  case 2 : return 28
+  case 4: case 6: case 9: case 11: return 30 // если результат такой же
+  default: return 31
+}
 
+
+
+//                                                Особенности условий
+
+function trueOrFalse(val){
+  if (val)    return 'true';
+  else     return 'false';
+}
+trueOrFalse(0); // "false"
+trueOrFalse(""); // "false"
 
 
 
