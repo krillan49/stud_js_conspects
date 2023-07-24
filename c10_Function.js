@@ -15,7 +15,7 @@ test(); // Можно вызывать многократно
 
 
 // Функции с параметрами
-function test2(word) { // параметры как в Руби
+function test2(word=0) { //  =0  значение по умолчанию
 	console.log(word + '!');
 }
 test2('Kroker'); //=> Kroker!
@@ -55,7 +55,7 @@ arr_sum(arr); //=> 15
 
 function return_test(some_number) {
 	some_number *= 2;
-	return some_number; // возвращаем результат к оператору вызова, чтобы поместить его в переменную
+	return some_number; // возвращаем результат к оператору вызова, например чтобы поместить его в переменную
 }
 var res = return_test(6); // теперь в переменной вар будет 12
 console.log('Result: ' + res); //=> Result: 12
@@ -88,15 +88,15 @@ console.log(num2); // Uncaught ReferenceError: num2 is not defined
 // Фича
 var num = 10;
 function info() {
-  var num = 5;
-  console.log(num); // сработает для локальной
+  var num = 5;      // Присваиваем в переменную с тем же именем
+  console.log(num); // тут сработает для локальной
 }
-info(); // сработает для локальной
-console.log(num); // сработает для глобальной
+info(); // тут сработает для локальной
+console.log(num); // тут сработает для глобальной
 
 
 
-//                                                 => Функции
+//                                             => Функции в ону строку
 
 var ArrowFunc = (arr) => arr.map( n => String.fromCharCode(n) ).join('');
 // n каждый элемент массива arr

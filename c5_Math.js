@@ -47,6 +47,11 @@ console.log(Math.PI); //=> 3.141592653589793
 console.log(Math.E); //=> 2.718281828459045
 console.log(Math.min(1, 0, 5, -3, 6, 2)); //=> -3
 console.log(Math.max(1, 0, 5, -3, 6, 2)); //=> 6
+console.log(Math.floor(5.95)); //=> 5
+Math.round(20.49); //=> 20
+Math.round(20.5); //=> 21
+Math.round(num * 100) / 100 //=> округление до 2х знаков
+1.11911.toFixed(2) //=> 1.12  округление до 2х знаков
 
 
 

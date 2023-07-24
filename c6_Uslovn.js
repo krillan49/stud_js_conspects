@@ -47,7 +47,13 @@ else
 var y = 90, z = 8;
 var res = y < z ? (y + z) : (y - z);
 console.log(res); //=> 82
-// Мы проверяем, если "y" будет меньше "z", то в res устанавливаем их сумму, иначе - их разницу.
+
+
+//                                              if в одну строку
+
+var n = 5;
+if (n == 5) console.log(n + 'a'); //=> 5a
+if (n < 7) console.log(n + 'b'); //=> 5b
 
 
 //                                               switch - case
@@ -72,7 +78,7 @@ switch (x) { // Проверяем переменную x
 
 // Сокращенная запись
 switch ( month ){
-  case 2 : return 28
+  case 2: return 28
   case 4: case 6: case 9: case 11: return 30 // если результат такой же
   default: return 31
 }
