@@ -1,3 +1,7 @@
+// Странная херня
+console.log(1 == '1'); //=> true
+
+
 // Интерполяция ${}
 `Oi! Sheep number ${n}! You are about to be eaten by a wolf!`
 // Разделение строк
@@ -27,6 +31,16 @@ var animal = {name:"dog"}
 var animal = {}
 animal.name = "dog" // так
 animal["name"] = "dog" //или так
+
+// Многомерный хэш-объект
+var rooms = {
+  kroker: {name:"Kroker", item:"Sword", status:"Gigant"},
+  gonzik: {name:"Gonzik", item:"Vljenka", status:"Krutitsa"},
+  rS: {name:"Robot Serenka", item:"Pistol", status:"On repair"}
+}
+
+// Методы хэшей
+console.log(Object.keys(rooms)) //=> [ 'kroker', 'gonzik', 'rS' ]
 
 
 // Определить тип
@@ -64,6 +78,10 @@ console.log(Number(s)); //=> NaN
 function spEng(s){
   return /english/i.test(s) // содержит ли строка слово english вне зависимости от региста
 }
+
+console.log('1a2Bb3c'.replace(/[0-9]/g, "-")) //=> -a-Bb-c
+// g без него заменит только 1й совпадающий символ
+
 
 
 // Символ из его непронумера ascii

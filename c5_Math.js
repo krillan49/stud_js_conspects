@@ -45,12 +45,21 @@ console.log(str3 + str4); //=> 14
 
 console.log(Math.PI); //=> 3.141592653589793
 console.log(Math.E); //=> 2.718281828459045
+
+// Math.log() - метод возвращает натуральный логарифм (по основанию e ) числа.
+console.log(Math.log(5)); //=> 1.6094379124341003
+console.log(Math.log(Math.E)); //=> 1
+console.log(Math.log(8) / Math.log(2)); //=> 3  //Использование Math.log() с другой базой
+
 console.log(Math.min(1, 0, 5, -3, 6, 2)); //=> -3
 console.log(Math.max(1, 0, 5, -3, 6, 2)); //=> 6
+
 console.log(Math.floor(5.95)); //=> 5
 Math.round(20.49); //=> 20
 Math.round(20.5); //=> 21
 Math.round(num * 100) / 100 //=> округление до 2х знаков
+
+
 1.11911.toFixed(2) //=> 1.12  округление до 2х знаков
 
 

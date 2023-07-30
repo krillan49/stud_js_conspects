@@ -28,6 +28,9 @@ console.log(elements.reverse()); //=> ["Первый", true, 0, 6, 23]  пере
 console.log(elements.pop()); //=> "Первый" удаляет последний эллемент из массива и возвращает его
 console.log(elements.slice(0, 2)); //=> [23, 6] // 1й параметр индекс, 2й число элементов
 console.log(['A', 'b', 'c'].join('-')) //=> A-b-c
+console.log([9, 3, 12, 11, 40, 28, 5].filter(num => num > 10)); //=> [ 12, 11, 40, 28 ]  // аналог select в Руби
+console.log([2,3,5,7,11].indexOf(5)) //=> 2
+console.log([2,3,5,7,11].indexOf(99)) //=> -1
 
 // Странные методы
 console.log([9, 3, 12, 11, 40, 28, 5].sort()); //=> [11, 12, 28, 3, 40, 5, 9]; сортирует как строки
