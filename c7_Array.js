@@ -7,8 +7,11 @@
 var some = new Array(); // Создание пустого массива
 some[0] = '1'; // Добавление элемента
 some[1] = 2;
+some[4] = 66;
 some.push("codewars") // Добавление элемента в конец при помощи метода push
-console.log(some[0]); // Вывод первого элемента
+console.log(some[0]); //=> '1' Вывод первого элемента
+console.log(some); //=> [ '1', 2, <2 empty items>, 66, 'codewars' ]
+console.log(some[2]); //=> undefined
 
 var some2 = []; // упрощенное создание массива
 
@@ -29,6 +32,7 @@ console.log(elements.pop()); //=> "Первый" удаляет последни
 console.log(elements.slice(0, 2)); //=> [23, 6] // 1й параметр индекс, 2й число элементов
 console.log(['A', 'b', 'c'].join('-')) //=> A-b-c
 console.log([9, 3, 12, 11, 40, 28, 5].filter(num => num > 10)); //=> [ 12, 11, 40, 28 ]  // аналог select в Руби
+console.log([1, 2, 3].map(n => n**2))//=> [ 1, 4, 9 ]
 console.log([2,3,5,7,11].indexOf(5)) //=> 2
 console.log([2,3,5,7,11].indexOf(99)) //=> -1
 

@@ -26,9 +26,9 @@ test2(true); //=> true!
 
 function summa(a, b) {
   var res = a + b;
-  console.log(res);
+  console.log(res); //=> 12
 }
-summa(5, 7); //=> 12
+summa(5, 7);
 
 
 // Вызов одной функции внутри тела другой
@@ -42,13 +42,13 @@ summa2(5, 7); //=> 12!
 // Пример с массивом
 function arr_sum(arr) {
   var sum = 0;
-  for (i = 0; i < arr.length; i++) {
+  for (var i = 0; i < arr.length; i++) {
     sum += arr[i];
   }
-  console.log(sum)
+  console.log(sum) //=> 15
 }
 var arr = [6, 8, 1]; // придется сперва определить
-arr_sum(arr); //=> 15
+arr_sum(arr);
 
 
 

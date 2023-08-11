@@ -10,6 +10,7 @@ console.log(1 == '1'); //=> true
 "My name is John".split(""); //=> [ 'M', 'y', ' ', 'n', 'a', 'm', 'e', ' ', 'i', 's', ' ', 'J', 'o', 'h', 'n' ]
 // сложение строк альтер вместо +
 "My".concat("name","is","John"); //=> MynameisJohn
+'Aa'.repeat(5) //=> "AaAaAaAaAa"
 
 // Перевод числа в строку
 111.toString(); //=> '111'
@@ -44,34 +45,28 @@ console.log(Object.keys(rooms)) //=> [ 'kroker', 'gonzik', 'rS' ]
 
 
 // Определить тип
-console.log(typeof 42); // Expected output: "number"
-console.log(typeof 'blubber'); // Expected output: "string"
-console.log(typeof true); // Expected output: "boolean"
-console.log(typeof undeclaredVariable); // Expected output: "undefined"
+console.log(typeof 42); //=> "number"
+console.log(typeof 'blubber'); //=> "string"
+console.log(typeof true); //=> "boolean"
+console.log(typeof undeclaredVariable); //=> "undefined"
 
 
 // Методы
 'bbb'.length; //=> 3 // length это не функция поэтому скобки не надо иначе выдаст ошибку (втф??)
-var lowerCaseName = "Your Name".toLowerCase(); //=> your name
-var inc = "Your Name".includes('english'); //=> false  // Содержит ли строка данную подстроку
+"Your Name".toLowerCase(); //=> your name
+"Your Name".includes('english'); //=> false  // Содержит ли строка данную подстроку
 "Your Name".replace(/[^a-z]/g, ""); //=> ourame
 'aaa!!'.replace('!', ""); //=> aaa!
 
 // parseFloat(string)
-var s = ' 3   ';
-console.log(parseFloat(s)); //=> 3
-s = ' -5.66 '
-console.log(parseFloat(s)); //=> -5.66
-s = '4 5'
-console.log(parseFloat(s)); //=> 4
+parseFloat(' 3   '); //=> 3
+console.log(parseFloat(' -5.66 ')); //=> -5.66
+console.log(parseFloat('4 5')); //=> 4
 
 // Number(string)
-var s = ' 3   ';
-console.log(Number(s)); //=> 3
-s = ' -5.66 '
-console.log(Number(s)); //=> -5.66
-s = '4 5'
-console.log(Number(s)); //=> NaN
+console.log(Number(' 3   ')); //=> 3
+console.log(Number(' -5.66 ')); //=> -5.66
+console.log(Number('4 5')); //=> NaN
 
 
 // Рег выражения
