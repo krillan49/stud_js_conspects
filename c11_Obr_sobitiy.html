@@ -9,17 +9,16 @@
 <head>
   <meta charset="utf-8">
   <title></title>
-  <script type="text/javascript" src="c11_Obr_sobitiy.js"></script>
 </head>
 
 <body>
   <!--                               Виды HTML-аьрибутов - обработчиков событий: -->
 
   <!--       1. onclick - обработчик события, которое срабатывает при нажатии на тег(тут кнопку) -->
-  <button onclick="alert('onclick-alert')">onclick="JS-код прямо в атрибуте"</button>
+  <button onclick="alert('Hello')">onclick="JS-код прямо в атрибуте"</button>
   <!-- "alert('onclick-alert')" - атрибут с JS кодом внутри. Можно написать там больше JS кода, разделив его точками с запятой -->
   <!-- alert() - при нажатии на кнопку появится всплывающее окно с параметром из скобок -->
-  <!-- 'onclick-alert' - параметр функции alert(). Число можно писать как есть, но строку нужно заключить в кавычки, неодинаковые с кавычками в который заключен весь атрибут -->
+  <!-- 'Hello' - параметр функции alert(). Число можно писать как есть, но строку нужно заключить в кавычки, неодинаковые с кавычками в который заключен весь атрибут -->
 
   <button onclick="onClickButton()">onclick="function()"</button>
   <!-- onClickButton() - наша функция в атрибуте из подключенного JS-фаила или скрипта с этой страницы -->
@@ -66,6 +65,8 @@
   <button onclick="styleChange2(this)">Кнопка2</button>
 
 
+
+  <script type="text/javascript" src="c11_Obr_sobitiy.js"></script>
 </body>
 </html>
 

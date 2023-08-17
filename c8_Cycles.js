@@ -39,7 +39,7 @@ function showObjectValues(obj){
     console.log(obj[key]); // перебираем значения по ключам
   }
 }
-var ob = {item1:"This",item2:"is",item3:"an",item4:"example"};
+var ob = {item1:"This", item2:"is", item3:"an", item4:"example"};
 showObjectKeys(ob); //=> item1 item2 item3 item4
 showObjectValues(ob); //=> This is an example
 
