@@ -34,9 +34,9 @@ summa(5, 7);
 // Вызов одной функции внутри тела другой
 function summa2(a, b) {
   var res = a + b;
-  test2(res);
+  test2(res); //=> 12!
 }
-summa2(5, 7); //=> 12!
+summa2(5, 7);
 
 
 // Пример с массивом
@@ -103,6 +103,19 @@ console.log(num); // тут сработает для глобальной
 var ArrowFunc = (arr) => arr.map( n => String.fromCharCode(n) ).join('');
 // n каждый элемент массива arr
 
+console.log([1,2,3].map(x=>Math.pow(x,3))); //=> [1,8,27]
+
+
+//                                         Создание функции из функции без измени
+
+rev = function(array) {
+  var res = [];
+  for (i = array.length-1; i >= 0; i--){
+    res.push(array[i]);
+  }
+  return res;
+}
+console.log(rev([1,2,3])) //=> [ 3, 2, 1 ]
 
 
 

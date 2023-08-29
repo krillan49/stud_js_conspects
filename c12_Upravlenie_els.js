@@ -23,7 +23,7 @@ text.style.backgroundColor = 'yellow'; // имя стиля пишем в кам
 text.innerHTML = "some<i>text</i>"; // можно писать не только текст но и теги
 
 // если нужно обратиться к одному свойству переменную создавать не обязательно
-console.log(document.getElementById('text').style); //=> все стили и их значения(даже не прописанные)
+console.log(document.getElementById('text').style); //=> вернет все стили и их значения(даже не прописанные)
 document.getElementById('text').style.fontSize = '2rem'
 
 
@@ -37,7 +37,7 @@ for (var i = 0; i < arr.length; i++){
 
 // 3. Обращение через класс. В этом случае тоже будет возвращен массив содержащий объекты тегов
 var arr = document.getElementsByClassName('aaa');
-console.log(arr[1].innerHTML);  // Span 3
+console.log(arr[1].innerHTML);  //=> Span 3
 
 
 

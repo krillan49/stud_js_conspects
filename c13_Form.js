@@ -10,6 +10,7 @@ function checkForm0(event) { // принимаем параметр событи
   // далее тот код что и в методе ниже
 }
 
+
 //  Вариант с JS кодом в HTML
 function checkForm(form) {
   console.log('Check form'); // если не добавить return в значении обработчика перед функцией вывод в консоли будет лишь на секунду, тк при нажатии кнопки submit страница по умолчанию перезагружается
@@ -21,7 +22,7 @@ function checkForm(form) {
   // 2й вариант(его и используем) получить значение введенное в поле пользователем:
   var name = form.name.value;
   // form - содержит всю форму со всеми дочерними тегами
-  // form.name - чтобы выбрать нужный тег обращаемся к значению его атрибута name
+  // form.name - чтобы выбрать нужный тег обращаемся к значению его атрибута name(которое тоже == name)
   // form.name.value - получаем значение введенное пользователем выбранного поля
   var pass = form.pass.value;
   var repass = form.repass.value;
@@ -30,6 +31,7 @@ function checkForm(form) {
 
   // Валидация данных:
   var fail = '';
+
   if (name == '' || pass == '' || repass == '' || state == '')
     fail = 'Заполните все поля';
   else if (name.length < 2 || name.length > 50)

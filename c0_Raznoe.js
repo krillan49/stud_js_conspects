@@ -11,7 +11,7 @@ console.log(1 == '1'); //=> true
 // сложение строк альтер вместо +
 "My".concat("name","is","John"); //=> MynameisJohn
 'Aa'.repeat(5) //=> "AaAaAaAaAa"
-'roun'.length //=> 4
+'roun'.length //=> 4 // length это не функция поэтому скобки не надо иначе выдаст ошибку (втф??)
 // Срез slice() substring() substr()
 // slice() и substring() берут диапазон из 2х параметров(не включая последний). substr() начинает с индекса равному 1му параметру и берет число элементов равному 2му параметру
 "Hello World!".slice(6) //=> 'World!' // substring() substr() ведут себя так же
@@ -20,6 +20,32 @@ console.log(1 == '1'); //=> true
 "Hello World!".substr(6,9) //=> 'World!'
 "Hello beautiful World!".slice(16,21) //=> 'World' // substring() ведет себя так же
 "Hello beautiful World!".slice(16,-1) //=> 'World' // параметры slice() могут быть отрицательными числами. Отрицательное значение начинается справа. -1 - первая позиция справа.
+
+// Удалить элемент по индексу
+str = str.slice(0, i) + str.slice(i + 1);
+
+// Методы
+'bbb'.length; //=> 3
+"Your Name".toLowerCase(); //=> your name
+"Your Name".includes('english'); //=> false  // Содержит ли строка данную подстроку
+"Your Name".replace(/[^a-z]/g, ""); //=> ourame
+'aaa!!'.replace('!', ""); //=> aaa!
+
+
+// parseFloat(string)
+parseFloat(' 3   '); //=> 3
+console.log(parseFloat(' -5.66 ')); //=> -5.66
+console.log(parseFloat('4 5')); //=> 4
+
+// Number(string)
+console.log(Number(' 3   ')); //=> 3
+console.log(Number(' -5.66 ')); //=> -5.66
+console.log(Number('4 5')); //=> NaN
+
+
+// Рег выражения
+/english/i.test('This English lesson') //=> true // содержит ли строка слово english вне зависимости от региста
+'1a2Bb3c'.replace(/[0-9]/g, "-") //=> -a-Bb-c // g без него заменит только 1й совпадающий символ
 
 
 // каждый символ в троке имеет индекс
@@ -63,30 +89,6 @@ console.log(typeof 42); //=> "number"
 console.log(typeof 'blubber'); //=> "string"
 console.log(typeof true); //=> "boolean"
 console.log(typeof undeclaredVariable); //=> "undefined"
-
-
-// Методы
-'bbb'.length; //=> 3 // length это не функция поэтому скобки не надо иначе выдаст ошибку (втф??)
-"Your Name".toLowerCase(); //=> your name
-"Your Name".includes('english'); //=> false  // Содержит ли строка данную подстроку
-"Your Name".replace(/[^a-z]/g, ""); //=> ourame
-'aaa!!'.replace('!', ""); //=> aaa!
-
-// parseFloat(string)
-parseFloat(' 3   '); //=> 3
-console.log(parseFloat(' -5.66 ')); //=> -5.66
-console.log(parseFloat('4 5')); //=> 4
-
-// Number(string)
-console.log(Number(' 3   ')); //=> 3
-console.log(Number(' -5.66 ')); //=> -5.66
-console.log(Number('4 5')); //=> NaN
-
-
-// Рег выражения
-/english/i.test('This English lesson') //=> true // содержит ли строка слово english вне зависимости от региста
-'1a2Bb3c'.replace(/[0-9]/g, "-") //=> -a-Bb-c // g без него заменит только 1й совпадающий символ
-
 
 
 // Символ из его непронумера ascii

@@ -29,49 +29,30 @@ console.log(arr); // [10, 20, 35, 25, 15, 10]
 //                                                For in
 
 // 1. Перебор ключей и значений хэша/объекта
-function showObjectKeys(obj){
-  for (var key in obj){ // перебираем ключи хэша
-    console.log(key);
-  }
+var obj = {item1:"This", item2:"is", item3:"an", item4:"example"};
+for (var key in obj){ // перебираем ключи хэша
+  console.log(key); //=> item1 item2 item3 item4
+  console.log(obj[key]); //=> This is an example  // перебираем значения по ключам
 }
-function showObjectValues(obj){
-  for (var key in obj){
-    console.log(obj[key]); // перебираем значения по ключам
-  }
-}
-var ob = {item1:"This", item2:"is", item3:"an", item4:"example"};
-showObjectKeys(ob); //=> item1 item2 item3 item4
-showObjectValues(ob); //=> This is an example
 
 
 // 2. Перебор индексов и значений массива. Хотя for..in можно использовать для обхода массива, это не рекомендуется, поскольку в некоторых случаях порядок может быть неожиданным.
 // При использовании for..in с массивом ключ (индекс) всегда является строкой, а не числом
-function showObjectKeys(arr){
-  for (var i in arr){
-    console.log(i);
-  }
-}
-function showObjectValues(arr){
-  for (var i in arr){
-    console.log(arr[i]);
-  }
-}
 var arr = ["one","two","three"];
-showObjectKeys(arr); //=> 0 1 2
-showObjectValues(arr); //=> one two three
+for (var i in arr){
+  console.log(i); //=> 0 1 2
+  console.log(arr[i]); //=> one two three
+}
 
 
 
 //                                                For of
 
 // for..of (новый в ES6). for..of может просматривать все значения массива (без доступа к ним через их индекс).
-function showArrayValues(arr){
-  for (var value of arr){
-    console.log(value);
-  }
-}
 var arr = ["one","two","three"];
-showArrayValues(arr); //=> one two three
+for (var value of arr){
+  console.log(value); //=> one two three
+}
 
 
 
