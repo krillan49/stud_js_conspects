@@ -113,9 +113,9 @@ Number.POSITIVE_INFINITY //=> Infinity значение представляет
 
 // методы объектов Number: toFixed(), toExponential() и toPrecision()
 1.11911.toFixed(2) //=> '1.12'  округление до 2х знаков
-console.log([(111).toFixed(), (111).toExponential(), (111).toPrecision()])  //=> [ '111', '1.11e+2', '111' ]
-console.log([111.11.toFixed(1), 111.11.toExponential(1), 111.11.toPrecision(1)]) //=> [ '111.1', '1.1e+2', '1e+2' ]
-console.log([111.11.toFixed(6), 111.11.toExponential(6), 111.11.toPrecision(6)]) //=> [ '111.110000', '1.111100e+2', '111.110' ]
+[(111).toFixed(), (111).toExponential(), (111).toPrecision()]       //=> [ '111', '1.11e+2', '111' ]
+[111.11.toFixed(1), 111.11.toExponential(1), 111.11.toPrecision(1)] //=> [ '111.1', '1.1e+2', '1e+2' ]
+[111.11.toFixed(6), 111.11.toExponential(6), 111.11.toPrecision(6)] //=> [ '111.110000', '1.111100e+2', '111.110' ]
 
 
 

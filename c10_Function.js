@@ -103,7 +103,7 @@ console.log(num); // тут сработает для глобальной
 var ArrowFunc = (arr) => arr.map( n => String.fromCharCode(n) ).join('');
 // n каждый элемент массива arr
 
-console.log([1,2,3].map(x=>Math.pow(x,3))); //=> [1,8,27]
+[1,2,3].map(x=>Math.pow(x,3)); //=> [1,8,27]
 
 
 //                                         Создание функции из функции без измени

@@ -10,8 +10,14 @@ console.log(1 == '1'); //=> true
 "My name is John".split(""); //=> [ 'M', 'y', ' ', 'n', 'a', 'm', 'e', ' ', 'i', 's', ' ', 'J', 'o', 'h', 'n' ]
 // сложение строк альтер вместо +
 "My".concat("name","is","John"); //=> MynameisJohn
-'Aa'.repeat(5) //=> "AaAaAaAaAa"
-'roun'.length //=> 4 // length это не функция поэтому скобки не надо иначе выдаст ошибку (втф??)
+'Aa'.repeat(5); //=> "AaAaAaAaAa"
+'roun'.length; //=> 4 // length это не функция поэтому скобки не надо иначе выдаст ошибку (втф??)
+"Your Name".toLowerCase(); //=> your name
+"Your Name".toUpperCase();
+"Your Name".includes('english'); //=> false  // Содержит ли строка данную подстроку
+"Your Name".replace(/[^a-z]/g, ""); //=> ourame
+'aaa!!'.replace('!', ""); //=> aaa!
+
 // Срез slice() substring() substr()
 // slice() и substring() берут диапазон из 2х параметров(не включая последний). substr() начинает с индекса равному 1му параметру и берет число элементов равному 2му параметру
 "Hello World!".slice(6) //=> 'World!' // substring() substr() ведут себя так же
@@ -21,15 +27,21 @@ console.log(1 == '1'); //=> true
 "Hello beautiful World!".slice(16,21) //=> 'World' // substring() ведет себя так же
 "Hello beautiful World!".slice(16,-1) //=> 'World' // параметры slice() могут быть отрицательными числами. Отрицательное значение начинается справа. -1 - первая позиция справа.
 
+// Каждая строка представляет из себя массив символов. По этой причине можно работать с любой строкой как с обычным массивом.
+var string = "Строка";
+console.log(string[0]); //=> "C"
+console.log(string[3] + string[1]); //=> "от" (4 и 2 символ)
+
+// каждый символ в троке имеет индекс
+var str = "codewars";
+for (var i=0; i<str.length; i++) console.log(str[i])  // выведет побуквенно
+
 // Удалить элемент по индексу
 str = str.slice(0, i) + str.slice(i + 1);
 
-// Методы
-'bbb'.length; //=> 3
-"Your Name".toLowerCase(); //=> your name
-"Your Name".includes('english'); //=> false  // Содержит ли строка данную подстроку
-"Your Name".replace(/[^a-z]/g, ""); //=> ourame
-'aaa!!'.replace('!', ""); //=> aaa!
+// Рег выражения
+/english/i.test('This English lesson') //=> true // содержит ли строка слово english вне зависимости от региста
+'1a2Bb3c'.replace(/[0-9]/g, "-") //=> -a-Bb-c // g без него заменит только 1й совпадающий символ
 
 
 // parseFloat(string)
@@ -43,24 +55,15 @@ console.log(Number(' -5.66 ')); //=> -5.66
 console.log(Number('4 5')); //=> NaN
 
 
-// Рег выражения
-/english/i.test('This English lesson') //=> true // содержит ли строка слово english вне зависимости от региста
-'1a2Bb3c'.replace(/[0-9]/g, "-") //=> -a-Bb-c // g без него заменит только 1й совпадающий символ
-
-
-// каждый символ в троке имеет индекс
-var str = "codewars";
-for (var i=0; i<str.length; i++) console.log(str[i])  // выведет побуквенно
-
 // Перевод числа в строку
-111.toString(); //=> '111'
-111.toLocaleString(); //=> '111'
+(111).toString(); //=> '111'
+(111).toLocaleString(); //=> '111'
 111 + ""; //=> '111'
 
 // Перевод в другую систему исчисления
-111.toString(2); //=> '1101111'
-111.toString(8);  //=> '157'
-111.toString(16);  //=> '6f'
+(111).toString(2); //=> '1101111'
+(111).toString(8);  //=> '157'
+(111).toString(16);  //=> '6f'
 
 
 // В javascript объект(это походу хэш ??) является одним из основных типов данных. Определить объект можно:
@@ -93,6 +96,9 @@ console.log(typeof undeclaredVariable); //=> "undefined"
 
 // Символ из его непронумера ascii
 String.fromCharCode(97) //=> a
+
+// Функция кодирования URL-адресов
+console.log('http://www.codewars.com/users/' + encodeURIComponent("aaa ")); //=> http://www.codewars.com/users/aaa%20
 
 
 

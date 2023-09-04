@@ -16,14 +16,14 @@ function checkForm(form) {
   console.log('Check form'); // если не добавить return в значении обработчика перед функцией вывод в консоли будет лишь на секунду, тк при нажатии кнопки submit страница по умолчанию перезагружается
 
   // 1й вариант получить значение введенное в поле пользователем:
-  var name0 = document.getElementById('name').value;
+  var name0 = document.getElementById('username').value;
   console.log(name0);
 
   // 2й вариант(его и используем) получить значение введенное в поле пользователем:
-  var name = form.name.value;
+  var name = form.username.value;
   // form - содержит всю форму со всеми дочерними тегами
-  // form.name - чтобы выбрать нужный тег обращаемся к значению его атрибута name(которое тоже == name)
-  // form.name.value - получаем значение введенное пользователем выбранного поля
+  // form.username - чтобы выбрать нужный тег обращаемся к значению его атрибута name
+  // form.username.value - получаем значение введенное пользователем выбранного поля
   var pass = form.pass.value;
   var repass = form.repass.value;
   var state = form.state.value;
