@@ -1,9 +1,12 @@
 // Странная херня
 console.log(1 == '1'); //=> true
+console.log(1 === '1'); //=> false
+console.log(1 === 1); //=> true
 
 
 // Интерполяция ${}
 `Oi! Sheep number ${n}! You are about to be eaten by a wolf!`
+
 // Разделение строк
 "My name is John".split(" "); //=> [ 'My', 'name', 'is', 'John' ]
 "My name is John".split(" ", 3); //=> [ 'My', 'name', 'is' ]  // 2й аргумент берет первые сколькото элементов разбитой строки(если их получилось меньше чем аргумент то просто будет меньше и в массиве)
@@ -19,7 +22,7 @@ console.log(1 == '1'); //=> true
 'aaa!!'.replace('!', ""); //=> aaa!
 
 // Срез slice() substring() substr()
-// slice() и substring() берут диапазон из 2х параметров(не включая последний). substr() начинает с индекса равному 1му параметру и берет число элементов равному 2му параметру
+// slice() и substring() бернут диапазон из 2х параметров(не включая последний). substr() начинает с индекса равному 1му параметру и берет число элементов равному 2му параметру
 "Hello World!".slice(6) //=> 'World!' // substring() substr() ведут себя так же
 "Hello World!".slice(0,5) //=> 'Hello' // substring() substr() ведут себя так же
 "Hello World!".slice(6,9) //=> 'Wor' // substring() ведет себя так же
@@ -65,26 +68,6 @@ console.log(Number('4 5')); //=> NaN
 (111).toString(8);  //=> '157'
 (111).toString(16);  //=> '6f'
 
-
-// В javascript объект(это походу хэш ??) является одним из основных типов данных. Определить объект можно:
-var obj = new Object()
-var obj = {} // или так
-// Вы можете определить атрибуты объекта во время инициализации, например:
-var animal = {name:"dog"}
-// вы также можете установить/получить некоторые свойства после определения объекта, например:
-var animal = {}
-animal.name = "dog" // так
-animal["name"] = "dog" //или так
-
-// Многомерный хэш-объект
-var rooms = {
-  kroker: {name:"Kroker", item:"Sword", status:"Gigant"},
-  gonzik: {name:"Gonzik", item:"Vljenka", status:"Krutitsa"},
-  rS: {name:"Robot Serenka", item:"Pistol", status:"On repair"}
-}
-
-// Методы хэшей
-console.log(Object.keys(rooms)) //=> [ 'kroker', 'gonzik', 'rS' ]
 
 
 // Определить тип

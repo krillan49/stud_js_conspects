@@ -24,19 +24,13 @@ test2(6); //=> 6!
 test2(5.5); //=> 5.5!
 test2(true); //=> true!
 
-function summa(a, b) {
-  var res = a + b;
-  console.log(res); //=> 12
-}
-summa(5, 7);
-
 
 // Вызов одной функции внутри тела другой
-function summa2(a, b) {
+function summa(a, b) {
   var res = a + b;
   test2(res); //=> 12!
 }
-summa2(5, 7);
+summa(5, 7);
 
 
 // Пример с массивом

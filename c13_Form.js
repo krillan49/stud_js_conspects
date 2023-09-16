@@ -1,6 +1,6 @@
 //                                            Обработка форм
 
-//  Вариант с полным разделением JS кода от HTML
+//  2 Вариант с полным разделением JS кода от HTML
 document.getElementById('main-form').addEventListener('submit', checkForm0); // вешаем обработчик события на форму отсюда, чтобы не писать JS код в HTML фаиле(onsubmit="return checkForm(this)")
 // 'submit' - параметр, говорит о том что мы отслеживаем событие отправки(аналог onsubmit атрибута, но без 'on')
 // checkForm - параметр указывающий на то какую функцию будем использовать
@@ -11,7 +11,7 @@ function checkForm0(event) { // принимаем параметр событи
 }
 
 
-//  Вариант с JS кодом в HTML
+//  1 Вариант с JS кодом в HTML(onsubmit="return checkForm(this)")
 function checkForm(form) {
   console.log('Check form'); // если не добавить return в значении обработчика перед функцией вывод в консоли будет лишь на секунду, тк при нажатии кнопки submit страница по умолчанию перезагружается
 
@@ -43,7 +43,7 @@ function checkForm(form) {
 
   // вывод ошибки
   if (fail != '') {
-    document.getElementById('error').innerHTML = fail; // Заполняем тег для ошибок текстом ошибки
+    document.getElementById('error').innerHTML = fail; // Заполняем тег для ошибок текстом ошибки из переменной
     return false; // и не отправляем форму на сервер
   }
   alert('Данные отправлены');
@@ -58,6 +58,17 @@ function checkForm(form) {
   return true;
 }
 
+
+// Обращеник к форме через все формы на странице
+function valForm() {
+  var el = document.forms['my-form']['user'].value; // обращаемся ко всему документу, потом ко всем формам в нем, потом по значению аргумента name к форме, потом так же к полю, потом к его значению
+  if (el == '') {
+    alert('Форма не заполнена');
+    return false;
+  } else {
+    return true;
+  }
+}
 
 
 
