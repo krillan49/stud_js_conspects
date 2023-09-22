@@ -27,7 +27,7 @@ console.log(document.getElementById('text').style); //=> вернет все с�
 document.getElementById('text').style.fontSize = '2rem'
 
 
-// Пример изменения цвета разными кнопками
+// Пример изменения цвета абзаца нажатием разных кнопок
 function changeColor(newColor) {
   var but = document.getElementById('but');
   but.style.color = newColor;

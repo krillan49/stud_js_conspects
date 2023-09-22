@@ -25,6 +25,12 @@ console.log(arr[3]); //=> word
 
 //                                            Методы массивов
 
+// Сложение массивов
+var arr1 = [1,2], arr2 = [3,4];
+console.log([...arr1, ...arr2]); //=> [1,2,3,4]
+console.log(['a', 'b'].concat(['c', 'd']));
+
+
 var elements = new Array(23, 6, 0, true, "Первый");
 console.log(elements.length); //=> 5  Выводит длинну массива
 elements.reverse(); //=> ["Первый", true, 0, 6, 23]  перевернуть массив
