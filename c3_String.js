@@ -1,6 +1,11 @@
 //                                        Строки и регулярки
 
-// Интерполяция ${}
+
+var str1 = '12';
+var str2 = '2';
+console.log(str1 + str2); //=> '122' // сложение строк
+
+// Интерполяция ${}. Возможна только в таких кавычках ``, в обычных одинарных и 2йных могут быть только фиксированные строки
 `Oi! Sheep number ${n}! You are about to be eaten by a wolf!`
 
 // Разделение строк
@@ -17,11 +22,26 @@
 "Your Name".replace(/[^a-z]/g, ""); //=> ourame
 'aaa!!'.replace('!', ""); //=> aaa!
 
-// Функчия находящая в строке индекс подстроки
+" \n  \n\n\na  b  c\t\t\t ".trim(); //=> 'a  b  c'  // удаляет все пробельные элементы в начале и конце
+
+
+// indexOf()  -  функция находящая в строке индекс подстроки. Ищет с начала те слева направо(если 2й параметр опущен, поиск начинается с индекса 0).
 'product_dddggg'.indexOf('product_') //=> 0
 'product_dddggg'.indexOf('product_') == 0 //=> true
-'bbbbbaaa'.indexOf('aaa') //=> 5
-'aaa'.indexOf('aaacc') //=> -1   если строка не содержит подстроку
+'aaabbb'.indexOf('aaacc') //=> -1   если строка не содержит подстроку
+"Hello World!".indexOf("e") //=> 1
+"Hello World!".indexOf("o")  //=> 4
+"Hello World!".indexOf("o",5) //=> 7 // начинает выборку с индекса 5 и идет вправо
+
+// LastIndexOf()  -  функция находящая в строке индекс подстроки. Ищет с конца те справа налево(если 2й параметр опущен, поиск начинается с последнего символа).
+"Hello World!".lastIndexOf("o") //=> 7
+"Hello World!".lastIndexOf("o",5) //=> 4   // начинает выборку с индекса 5 и идет влево;
+"Hello World!".lastIndexOf("world") //=> -1
+
+// search()  -  аналогично indexOf(), но характеризуется поддержкой регулярных выражений, но всегда возвращает позицию первого совпадения с левой стороны(не поддерживает опцию «g» регулярных выражений).
+"Hello World!".search("o") //=> 4
+"Hello World!".search(/world/i) //=> 6  // опция i позволяет игнорировать регистр
+
 
 // Срез slice() substring() substr()
 // slice() и substring() бернут диапазон из 2х параметров(не включая последний). substr() начинает с индекса равному 1му параметру и берет число элементов равному 2му параметру
@@ -47,6 +67,43 @@ str = str.slice(0, i) + str.slice(i + 1);
 // Рег выражения
 /english/i.test('This English lesson') //=> true // содержит ли строка слово english вне зависимости от региста
 '1a2Bb3c'.replace(/[0-9]/g, "-") //=> -a-Bb-c // g без него заменит только 1й совпадающий символ
+
+
+
+//                                        Перевод других типов в строку
+
+// Числа
+(111).toString(); //=> '111'
+(111).toLocaleString(); //=> '111'
+111 + ""; //=> '111'
+(111.1).toString(); //=> '111.1'
+(111.1).toLocaleString(); //=> '111.1'
+111.1 + ""; //=> '111.1'
+(NaN).toString(); //=> 'NaN'
+(NaN).toLocaleString(); //=> 'не число'
+NaN + ""; //=> 'NaN'
+// boolean
+(true).toString(); //=> 'true'
+(true).toLocaleString(); //=> 'true'
+true + ""; //=> 'true'
+// object
+(null).toString(); //=> выдаст ошибку
+(null).toLocaleString(); //=> выдаст ошибку
+null + ""; //=> 'null'
+(new Object()).toString(); //=> '[object Object]'
+(new Object()).toLocaleString(); //=> '[object Object]'
+new Object() + ""; //=> '[object Object]'
+// function
+(function some() {}).toString(); //=> 'function some() {}'
+(function some() {}).toLocaleString(); //=> 'function some() {}'
+function some() {} + ""; //=> 'function some() {}'
+
+
+
+//                                          Разное
+
+// Символ из его непронумера ascii
+String.fromCharCode(97) //=> a
 
 
 

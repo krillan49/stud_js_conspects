@@ -2,7 +2,7 @@
 
 function getRectArea(width, height) {
   if (isNaN(width) || isNaN(height)) {
-    throw new Error('Parameter is not a number!'); // в параметре можно указать имя ошибки например 'RangeError' либр вместо Error('Parameter is not a number!') указать RangeError()
+    throw new Error('Parameter is not a number!'); // в параметре можно указать имя ошибки например 'RangeError' либо вместо Error('Parameter is not a number!') указать RangeError()
   }
 }
 

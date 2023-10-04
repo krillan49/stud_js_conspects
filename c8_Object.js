@@ -1,4 +1,4 @@
-//                                               Объекты/Хэшмап
+//                                            Объекты/Хэшмап
 
 // В javascript объект(хэш ??) является одним из основных типов данных. Определить объект можно:
 var obj = new Object() // через конструктор
@@ -13,7 +13,7 @@ animal.name = "dog" // так
 animal["name"] = "dog" //или так
 
 
-// Можно создавать функции для объекта
+// Можно создавать(хранить) функции для объекта
 var apple = new Object()
 apple.color = 'red'
 apple.describe = function () { // describe - название функции
@@ -21,6 +21,13 @@ apple.describe = function () { // describe - название функции
 }
 console.log(apple.describe()); //=> Apple is red
 
+
+// Многомерный хэш-объект
+var rooms = {
+  kroker: {name:"Kroker", item:"Sword", status:"Gigant"},
+  gonzik: {name:"Gonzik", item:"Vljenka", status:"Krutitsa"},
+  rS: {name:"Robot Serenka", item:"Pistol", status:"On repair"}
+}
 
 // С разными значениями
 var person = {
@@ -42,18 +49,12 @@ console.log(person.adress.street); //=> 5
 console.log(person.NameSword()); //=> Kroker is Gigant
 console.log(person.what(9)); //=> 9009
 
-// Многомерный хэш-объект
-var rooms = {
-  kroker: {name:"Kroker", item:"Sword", status:"Gigant"},
-  gonzik: {name:"Gonzik", item:"Vljenka", status:"Krutitsa"},
-  rS: {name:"Robot Serenka", item:"Pistol", status:"On repair"}
-}
 
 // Круговой(ссылающийся сам на себя объект)
 var circular = {
-  value: "Hello World",
+  value: "Hello World"
 }
-circular.self = circular // self - название просто придуманое можно любое
+circular.self = circular   // self - название просто придуманое можно любое
 console.log(circular.self) //=> <ref *1> { value: 'Hello World', self: [Circular *1] }
 
 
@@ -65,7 +66,7 @@ console.log(Object.keys(rooms)) //=> [ 'kroker', 'gonzik', 'rS' ]
 
 
 
-//                                                   Конструкторы. Уже не хэши ??
+//                                        Конструкторы и прототипы. (?? Уже не хэши ??)
 
 // Конструктор сразу с параметрами для объекта
 function Fruit(color, shape) {
@@ -73,7 +74,8 @@ function Fruit(color, shape) {
   this.shape = shape;
 }
 // тоесть сразу при создании объекта задаем ему параметры
-var melon = new Fruit ('yellow', 'round')
+var melon = new Fruit('yellow', 'round')
+console.log(melon); //=> Fruit { color: 'yellow', shape: 'round' }
 
 
 // прототипы для конструктора

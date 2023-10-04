@@ -26,21 +26,43 @@ num2 = 'aaa' //=> aaa
 var Num = 'aaa';
 console.log(Num); //=> aaa
 
+
 // Создание константы. Константу нельзя переопределить, при попытке переопределения будет ошибка.
 const num3 = 5;
 
+
+
+//                                        Определить тип данных
+
+// Определить тип при помощи typeof
+console.log(typeof 42); //=> "number"
+typeof 2.5 //=> number
+typeof NaN //=> number
+typeof 'blubber'; //=> "string"
+typeof true; //=> "boolean"
+typeof undeclaredVariable; //=> "undefined"
+typeof null //=> object
+typeof new Object() //=> object
+typeof function some() {} //=> function
+
+
+//                                       Изменить тип данных
+
 // Оператор + со строкой преобразует и другое слогаемое в строку(тут из Integer)
-var num_1 = 5
-var num_2 = '5'
-num_1 + num_2 //=> '55'
+5 + '5' //=> '55'
+
+// Альтернативный перевод строки в число. чтобы преобразовать String в Int в JS. ('523' * 1 == 523)
+'53' * 1 //=> 53  // number
+'53.6' * 1 //=> 53.6  // number
 
 
-// Вывод переменной в консоль
-console.log(num); //=> 5
 
-// Объединение строк при помощи + если его не добавить то будет ошибка
-console.log("Переменная: " + num + "."); //=> Переменная: 5.
+//                                             Особенности
 
+// Странная херня
+console.log(1 == '1'); //=> true
+console.log(1 === '1'); //=> false
+console.log(1 === 1); //=> true
 
 
 
