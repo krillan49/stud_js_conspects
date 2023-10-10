@@ -49,6 +49,23 @@ arr_sum(arr);
 
 
 
+//                                      Неопределенное число аргументов
+
+// arguments - объект, который ведет себя аналогично массиву(ES3 или ES5 метод)
+function args() {
+  return arguments;
+}
+console.log(args(1, 2, 3, 4)) //=> [Arguments] { '0': 1, '1': 2, '2': 3, '3': 4 }
+console.log(typeof args(1, 2, 3, 4)) //=> object
+console.log(args(1, 2, 3, 4)[0]) //=> 1
+
+// Синтаксис остальных параметров(ES6/ES2015) (аналог рубишного *args)
+function args(...nums) {
+  return nums;
+}
+console.log(args(1, 2, 3, 4)) //=> [ 1, 2, 3, 4 ]
+
+
 //                                                 return
 
 function return_test(some_number) {

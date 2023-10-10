@@ -6,6 +6,10 @@ var obj = {} // или так
 
 // Вы можете определить атрибуты объекта во время инициализации, например:
 var animal = {name:"dog"}
+animal.name; //=> 'dog'
+animal['name']; //=> 'dog'
+animal.some; //=> undefined
+animal['some']; //=> undefined
 
 // вы также можете установить/получить некоторые свойства после определения объекта, например:
 var animal = {}
@@ -62,7 +66,10 @@ console.log(circular.self) //=> <ref *1> { value: 'Hello World', self: [Circular
 
 //                                                     Методы хэшей
 
-console.log(Object.keys(rooms)) //=> [ 'kroker', 'gonzik', 'rS' ]
+var some = { kroker: "Gigant", gonzik: "Krutitsa", rS: "Robot Serenka"}
+Object.keys(rooms) //=> [ 'kroker', 'gonzik', 'rS' ]
+Object.values(some) //=> [ 'Gigant', 'Krutitsa', 'Robot Serenka' ]
+Object.entries(some) //=> [ [ 'kroker', 'Gigant' ], [ 'gonzik', 'Krutitsa' ], [ 'rS', 'Robot Serenka' ] ]
 
 
 
