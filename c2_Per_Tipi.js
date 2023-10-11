@@ -31,6 +31,13 @@ console.log(Num); //=> aaa
 const num3 = 5;
 
 
+// Замена значений переменных друг на друга
+var a = 1, b = 2;
+[a, b] = [b, a];
+console.log(a); //=> 2
+console.log(b); //=> 1
+
+
 
 //                                        Определить тип данных
 
@@ -45,6 +52,22 @@ typeof null //=> object
 typeof [] //=> object
 typeof new Object() //=> object
 typeof function some() {} //=> function
+
+
+
+//                                      Тип данных и || 
+
+console.log(NaN || 1); //=> 1
+console.log(false || 1); //=> 1
+console.log(undeclaredVariable || 1); //=> !!! выдает ошибку ReferenceError
+console.log(undefined || 1); //=> 1
+console.log(null || 1); //=> 1
+console.log([] || 1); //=> []
+console.log('' || 1); //=> 1
+console.log(0 || 1); //=> 1
+console.log(new Object() || 1); //=> {}
+console.log(function some() {} || 1); //=> [Function: some]
+
 
 
 //                                         Изменить тип данных

@@ -47,6 +47,8 @@ var y = 90, z = 8;
 var res = y < z ? (y + z) : (y - z); // скобки только для действий??
 console.log(res); //=> 82
 
+var son = y > z && z < 5 ? 'third' : y > z ? 'second' : 'first'; // несколько действий
+
 
 //                                              if в одну строку
 
