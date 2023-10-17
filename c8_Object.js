@@ -63,8 +63,14 @@ console.log(circular.self) //=> <ref *1> { value: 'Hello World', self: [Circular
 
 
 
+//                                                   Фичи
 
-//                                                     Методы хэшей
+console.log({1:5,3:10,2:2,6:3,8:8}) //=> { '1': 5, '2': 2, '3': 10, '6': 3, '8': 8 }
+
+
+
+
+//                                                Методы хэшей
 
 var some = { kroker: "Gigant", gonzik: "Krutitsa", rS: "Robot Serenka"}
 Object.keys(rooms) //=> [ 'kroker', 'gonzik', 'rS' ]

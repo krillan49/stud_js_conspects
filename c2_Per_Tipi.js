@@ -17,6 +17,8 @@ num = 5; // присваиваем в переменную значение
 
 var num2 = 7; // создаем и присваиваем значение в одну строку
 
+var a = 2, b = 10; // содание нескольких переменных в 1 строку
+
 
 // Переопределение переменной
 num2 = 3; //=> 3
@@ -45,7 +47,7 @@ console.log(b); //=> 1
 console.log(typeof 42); //=> "number"
 typeof 2.5 //=> number
 typeof NaN //=> number
-typeof 'blubber'; //=> "string"
+typeof('blubber'); //=> "string" // можно писать аргумент в скобках
 typeof true; //=> "boolean"
 typeof undeclaredVariable; //=> "undefined"
 typeof null //=> object
@@ -55,7 +57,7 @@ typeof function some() {} //=> function
 
 
 
-//                                      Тип данных и || 
+//                                      Тип данных и ||
 
 console.log(NaN || 1); //=> 1
 console.log(false || 1); //=> 1

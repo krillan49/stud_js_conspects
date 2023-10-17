@@ -1,6 +1,15 @@
-//                                               Условные операторы
+//                                            Особенности условий
 
-// Условные конструкции позволяют проверить некое выражение и в зависимости от его результата выполнить необходимый код
+function trueOrFalse(val){
+  if (val)    return 'true';
+  else     return 'false';
+}
+trueOrFalse(0); // "false"
+trueOrFalse(""); // "false"
+trueOrFalse([]); //=> "true"
+trueOrFalse(new Object()); //=> "true"
+trueOrFalse(function some() {}); //=> "true"
+
 
 
 //                                               if - else
@@ -8,22 +17,20 @@
 // Можно сравнивать операторами == != > < >= <=  и мб еще чемто
 // Логическое и - &&; логическое или - ||
 
-var a = 2, b = 10;
-var isHas = true;
-var isNot = false;
+var a = 2, b = 10, isHas = true, isNot = false;
 
-if (a == b) {                         // условие пишем в скобках, далее фигурные скобки для тела условия
+if (a == b) {                                  // условие пишем в скобках, далее фигурные скобки для тела условия
   console.log("a равно b");
 	console.log("a == b");
-} else if (a <= b) {                  // аналог рубишного elsif, условие тоже в скобках
+} else if (a <= b) {                           // аналог рубишного elsif, условие тоже в скобках
 	console.log("a <= b");
-} else if (a != b && a > b) {         // два условия с &&
+} else if (a != b && a > b) {                  // два условия с &&
   console.log("a != b && a > b");
-} else if (a < b || a == b) {         // два условия с ||
+} else if (a < b || a == b) {                  // два условия с ||
   console.log("a < b || a == b");
 } else if (isHas == true || isNot == false) {  // проверка булевых значений
   console.log("some");
-} else if (!isHas || isNot) {        // сокращенная проверка булевых значений
+} else if (!isHas || isNot) {                  // сокращенная проверка булевых значений
   console.log("some");
 } else {
 	console.log("a > b");
@@ -39,6 +46,17 @@ else
 	console.log("a < b");
 //=> a < b
 
+// Еще более сокращенный в однострочники
+if (a == b) console.log("a == b");
+else if (a != b && a > b) console.log("a != b && a > b");
+else console.log("a < b");
+//=> a < b
+
+// Отдельные if в одну строку
+if (a == 2) console.log(a + 'a'); //=> 2a
+if (a < 7) console.log(a + 'b'); //=> 2b
+
+
 
 //                                               Тернарная операция
 
@@ -50,22 +68,16 @@ console.log(res); //=> 82
 var son = y > z && z < 5 ? 'third' : y > z ? 'second' : 'first'; // несколько действий
 
 
-//                                              if в одну строку
 
-var n = 5;
-if (n == 5) console.log(n + 'a'); //=> 5a
-if (n < 7) console.log(n + 'b'); //=> 5b
-
-
-//                                               switch - case
+//                                                switch - case
 
 // Конструкция case обладает более удобным форматом для проверки множественных условий на совпадение значения(только на равенство тк невозможно применить операторы сравнения).
 
 var x = 23;
 switch (x) { // Проверяем переменную x
 	case 1: // Если переменная будет равна 1, то ...
-		// Может быть множество строк, а не только одна
 		console.log("Переменная равна 1");
+    console.log("Может быть множество строк");
 		break; // Указываем конец для кода для этой проверки, те вместо { } в case используется : break;
 	case 56:
 		console.log("Переменная равна 56");
@@ -86,14 +98,7 @@ switch ( month ){
 
 
 
-//                                                Особенности условий
 
-function trueOrFalse(val){
-  if (val)    return 'true';
-  else     return 'false';
-}
-trueOrFalse(0); // "false"
-trueOrFalse(""); // "false"
 
 
 

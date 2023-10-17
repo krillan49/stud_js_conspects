@@ -10,6 +10,8 @@ string[0]; //=> "C"
 string[3] + string[1]; //=> "от" (4 и 2 символ)
 for (var i=0; i<string.length; i++) console.log(stringr[i])  // выведет побуквенно
 
+// Нет отрицательных индексов ??
+
 // Удалить элемент по индексу
 str = str.slice(0, i) + str.slice(i + 1);
 
@@ -36,36 +38,38 @@ str = str.slice(0, i) + str.slice(i + 1);
 
 // slice() и substring() бернут диапазон из 2х параметров(не включая последний).
 // substr() начинает с индекса равному 1му параметру и берет число элементов равному 2му параметру
-"Hello World!".slice(6) //=> 'World!' // substring() substr() ведут себя так же
-"Hello World!".slice(6,9) //=> 'Wor' // substring() ведет себя так же
-"Hello World!".substr(6,9) //=> 'World!'
-"Hello beautiful World!".slice(16,21) //=> 'World' // substring() ведет себя так же
-"Hello beautiful World!".slice(16,-1) //=> 'World' // параметры slice() могут быть отрицательными числами. Отрицательное значение начинается справа. -1 - первая позиция справа.
+"Hello World!".slice(6); //=> 'World!' // substring() substr() ведут себя так же
+"Hello World!".slice(6,9); //=> 'Wor' // substring() ведет себя так же
+"Hello World!".substr(6,9); //=> 'World!'
+"Hello beautiful World!".slice(16,21); //=> 'World' // substring() ведет себя так же
+"Hello beautiful World!".slice(16,-1); //=> 'World' // параметры slice() могут быть отрицательными числами. Отрицательное значение начинается справа. -1 - первая позиция справа.
+"Hello beautiful World!".slice(-1); //=> "!"
 
 // Замена подстрок в строке
 'aaa!!'.replace('!', ""); //=> aaa!
 "Your Name".replace(/[^a-z]/g, ""); //=> ourame
-'vavas'.replaceAll('a', '~') //=> v~v~s
+"this is an example".replace(/\b\w/g, x=>x.toUpperCase())); //=> 'This Is An Example'  // с функцией
+'vavas'.replaceAll('a', '~'); //=> v~v~s
 
 // indexOf()  -  функция находящая в строке индекс подстроки. Ищет с начала те слева направо(если 2й параметр опущен, поиск начинается с индекса 0).
-'product_dddggg'.indexOf('product_') //=> 0
-'product_dddggg'.indexOf('product_') == 0 //=> true
-'aaabbb'.indexOf('aaacc') //=> -1   если строка не содержит подстроку
-"Hello World!".indexOf("e") //=> 1
-"Hello World!".indexOf("o")  //=> 4
-"Hello World!".indexOf("o",5) //=> 7 // начинает выборку с индекса 5 и идет вправо
+'product_dddggg'.indexOf('product_'); //=> 0
+'product_dddggg'.indexOf('product_') == 0; //=> true
+'aaabbb'.indexOf('aaacc'); //=> -1   если строка не содержит подстроку
+"Hello World!".indexOf("e"); //=> 1
+"Hello World!".indexOf("o");  //=> 4
+"Hello World!".indexOf("o",5); //=> 7 // начинает выборку с индекса 5 и идет вправо
 // LastIndexOf()  -  функция находящая в строке индекс подстроки. Ищет с конца те справа налево(если 2й параметр опущен, поиск начинается с последнего символа).
-"Hello World!".lastIndexOf("o") //=> 7
-"Hello World!".lastIndexOf("o",5) //=> 4   // начинает выборку с индекса 5 и идет влево;
-"Hello World!".lastIndexOf("world") //=> -1
+"Hello World!".lastIndexOf("o"); //=> 7
+"Hello World!".lastIndexOf("o",5); //=> 4   // начинает выборку с индекса 5 и идет влево;
+"Hello World!".lastIndexOf("world"); //=> -1
 // search()  -  аналогично indexOf(), но характеризуется поддержкой регулярных выражений, но всегда возвращает позицию первого совпадения с левой стороны(не поддерживает опцию «g» регулярных выражений).
-"Hello World!".search("o") //=> 4
-"Hello World!".search(/world/i) //=> 6  // опция i позволяет игнорировать регистр
+"Hello World!".search("o"); //=> 4
+"Hello World!".search(/world/i); //=> 6  // опция i позволяет игнорировать регистр
 
 
 // Рег выражения
-/english/i.test('This English lesson') //=> true // содержит ли строка слово english вне зависимости от региста
-'1a2Bb3c'.replace(/[0-9]/g, "-") //=> -a-Bb-c // g без него заменит только 1й совпадающий символ
+/english/i.test('This English lesson'); //=> true // содержит ли строка слово english вне зависимости от региста
+'1a2Bb3c'.replace(/[0-9]/g, "-"); //=> -a-Bb-c // g без него заменит только 1й совпадающий символ
 
 
 
@@ -96,6 +100,9 @@ new Object() + ""; //=> '[object Object]'
 (function some() {}).toString(); //=> 'function some() {}'
 (function some() {}).toLocaleString(); //=> 'function some() {}'
 function some() {} + ""; //=> 'function some() {}'
+
+
+String(1234) //=> '1234'
 
 
 

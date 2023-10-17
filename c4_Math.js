@@ -54,6 +54,7 @@ parseFloat(' 3   '); //=> 3
 parseFloat(' -5.66 '); //=> -5.66
 console.log(parseFloat('4 5')); //=> 4
 +'111.12'; //=> 111.12 // «+» — упрощенная форма parseFloat() (когда используется перед строкой)
++'a'; //=> NaN
 
 // Number(string)
 console.log(Number(' 3   ')); //=> 3
