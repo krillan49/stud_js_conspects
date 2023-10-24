@@ -70,6 +70,8 @@ console.log(0 || 1); //=> 1
 console.log(new Object() || 1); //=> {}
 console.log(function some() {} || 1); //=> [Function: some]
 
+undefined || null //=> null
+
 
 
 //                                         Изменить тип данных

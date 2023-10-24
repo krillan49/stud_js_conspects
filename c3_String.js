@@ -49,6 +49,7 @@ str = str.slice(0, i) + str.slice(i + 1);
 'aaa!!'.replace('!', ""); //=> aaa!
 "Your Name".replace(/[^a-z]/g, ""); //=> ourame
 "this is an example".replace(/\b\w/g, x=>x.toUpperCase())); //=> 'This Is An Example'  // с функцией
+t.replace(/[aelAE]/g, a => ({'a': 4, 'e': 3, 'l':1 }[a.toLowerCase()]))
 'vavas'.replaceAll('a', '~'); //=> v~v~s
 
 // indexOf()  -  функция находящая в строке индекс подстроки. Ищет с начала те слева направо(если 2й параметр опущен, поиск начинается с индекса 0).
