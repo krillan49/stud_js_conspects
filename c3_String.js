@@ -7,8 +7,15 @@ console.log(str1 + str2); //=> '122' // сложение строк
 // Каждая строка представляет из себя массив символов. По этой причине можно работать с любой строкой как с обычным массивом.
 var string = "Строка";
 string[0]; //=> "C"
+string[string.length-1]; //=> "а" В строках ЖС нет отрицательных индексов в синтаксисе с []
 string[3] + string[1]; //=> "от" (4 и 2 символ)
 for (var i=0; i<string.length; i++) console.log(stringr[i])  // выведет побуквенно
+
+// Строки в JS не мутируемые соотв исходная строка не меняется оператором []=
+var str1 = "Hello world";
+var str2 = str1;
+str1[0] = 'A'
+console.log([str1, str2]); //=> [ 'Hello world', 'Hello world' ]
 
 // Нет отрицательных индексов ??
 
@@ -42,7 +49,7 @@ str = str.slice(0, i) + str.slice(i + 1);
 "Hello World!".slice(6,9); //=> 'Wor' // substring() ведет себя так же
 "Hello World!".substr(6,9); //=> 'World!'
 "Hello beautiful World!".slice(16,21); //=> 'World' // substring() ведет себя так же
-"Hello beautiful World!".slice(16,-1); //=> 'World' // параметры slice() могут быть отрицательными числами. Отрицательное значение начинается справа. -1 - первая позиция справа.
+"Hello beautiful World!".slice(16,-1); //=> 'World' // параметры slice() могут быть отрицательными числами(тоже невсключительно). Отрицательное значение начинается справа. -1 - первая позиция справа.
 "Hello beautiful World!".slice(-1); //=> "!"
 
 // Замена подстрок в строке
