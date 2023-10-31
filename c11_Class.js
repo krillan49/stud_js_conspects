@@ -1,6 +1,6 @@
 //                                            ООП. Классы и объекты.
 
-// В жс ооп на прототипах. Класс это просто сахар синтаксический
+// В JS ООП на прототипах. Класс это просто сахар синтаксический
 
 class Person {
   // внутри класа не нужно писать ключевое слово function для методов
@@ -38,13 +38,9 @@ console.log(Person.greetExtraTerrestrials('Gigant'));
 
 
 
-// Полиморфизм – это общий функционал для всех роботов и не важно что каждый робот может очень сильно отличаться друг от друга. К примеру, в главном классе мы указываем возможность передвижения для всех последующих роботов. Далее в классе наследнике мы можем дополнительно указать возможность левитации для робота, в другом же классе укажем возможность передвижения по воде и так далее. Получается, что есть общий функционал что записан в главном чертеже, но его можно переписать для каждого последующего робота (для каждого наследника).
-
-
-
 //                                             Наследование. super
 
-// Базовый класс
+// Базовый(материнский) класс
 class Animal {
   constructor(name, age, legs, species, status) {
     this.name = name;
@@ -82,7 +78,8 @@ class Dog extends Animal {
     this.master = master;
   }
   introduce() {
-    return `${super.introduce()} My master is ${this.master}`; // используем метод из материнского класса
+    return `${super.introduce()} My master is ${this.master}`;
+    // super.introduce()  - используем метод из материнского класса
   }
 }
 
@@ -92,6 +89,31 @@ class Shark extends Animal {
     super(name, age, legs, species, status);
     this.master = master;
   }
+}
+
+
+
+//                                           Класс как переменная объекта другого класса
+
+function Bee(capacity, hive) {
+  this.capacity = capacity;
+  this.hive = hive; // пчела имеет объект улья в переменной
+}
+
+function Hive() {
+  this.pollen = 100;
+}
+
+Hive.prototype.getPollen = function() {
+  return this.pollen;
+}
+
+Hive.prototype.addPollen = function(pollen) {
+  this.pollen += pollen;
+}
+
+Bee.prototype.unloadPollen = function() {
+  this.hive.addPollen(this.capacity); // используем улей данной пчелы чтоб добавить в него мед
 }
 
 

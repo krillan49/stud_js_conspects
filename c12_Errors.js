@@ -3,8 +3,12 @@
 function getRectArea(width, height) {
   if (isNaN(width) || isNaN(height)) {
     // вариант 1
-    throw new Error('Parameter is not a number!'); // в параметре можно указать имя ошибки например 'RangeError' либо вместо Error('Parameter is not a number!') указать RangeError()
+    throw new Error('Parameter is not a number!');
     // вариант 2
+    throw new Error('RangeError');
+    // вариант 3
+    throw new RangeError();
+    // вариант 4
     throw 'Parameter is not a number!';
   }
 }
@@ -14,4 +18,20 @@ try {
 } catch (e) {
   console.error(e);
   // Expected output: Error: Parameter is not a number!
+  // Error: RangeError
+  // RangeError
+  // Parameter is not a number!
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// 

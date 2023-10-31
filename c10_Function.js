@@ -99,14 +99,17 @@ console.log(num); // тут сработает для глобальной
 
 
 
-//                                             => Функции в ону строку
+//                                             => Стрелочные функции
 
-const last = xs => xs.length == 0 ? null : xs[xs.length-1]
+// В одну строку без {}
+const last = xs => xs.length == 0 ? null : xs[xs.length-1];
+console.log(last([1, 2, 3, 4])); //=> 4
 
-var ArrowFunc = (arr) => arr.map( n => String.fromCharCode(n) );
+var ArrowFunc = (arr) => arr.map(n => String.fromCharCode(n));
 // n каждый элемент массива arr
 
-// Применение стрелочных функций
+
+// Применение стрелочных функций в итераторе
 [1,2,3].map(x=>Math.pow(x,3)); //=> [1,8,27]
 
 

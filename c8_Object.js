@@ -72,39 +72,12 @@ Object.keys(rooms) //=> [ 'kroker', 'gonzik', 'rS' ]
 Object.values(some) //=> [ 'Gigant', 'Krutitsa', 'Robot Serenka' ]
 Object.entries(some) //=> [ [ 'kroker', 'Gigant' ], [ 'gonzik', 'Krutitsa' ], [ 'rS', 'Robot Serenka' ] ]
 
-
-
-//                                        Конструкторы и прототипы. (?? Уже не хэши ??)
-
-// Конструктор сразу с параметрами для объекта
-function Fruit(color, shape) {
-  this.color = color;
-  this.shape = shape;
-}
-var melon = new Fruit('yellow', 'round') // При создании объекта задаем ему параметры
-console.log(melon); //=> Fruit { color: 'yellow', shape: 'round' }
-
-
-// прототипы для конструктора
-function Warrior(wname) {
-  this.wname = wname; // если будем создавать функцию, то ее имя не должно быть равно имени переменной
-}
-Warrior.prototype.toString = function () {
-  return `Hi! my name's ${this.wname}`;
-}
-Warrior.prototype.name = function (par) { // если будем создавать функцию, то ее имя не должно быть равно имени переменной
-  if (par) this.wname = par;
-  return this.wname;
-}
-
-var albert = new Warrior("Albert")
-var boris  = new Warrior("Boris")
-
-console.log(albert.toString()) //=> "Hi! my name's Albert"
-console.log(albert.name())     //=> "Albert"
-console.log(boris.name())      //=> "Boris"
-boris.name("Bobo")
-console.log(boris.name())      //=> "Bobo"
+// assign - создает хэш из переменных
+var name = 'Kroker', age = 38, happy = true;
+var obj = Object.assign({ name, age, happy });
+console.log(obj); //=> { name: 'Kroker', age: 38, happy: true }
+var obj2 = Object.assign(this, { name, age, happy }); // так применяется в классе, с this для экземпляра класса
+console.log(obj2); //=> { name: 'Kroker', age: 38, happy: true }
 
 
 
