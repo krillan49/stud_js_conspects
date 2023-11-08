@@ -20,6 +20,10 @@ class Person {
     return 'Я ' + this.name + ', мне ' + this.age;
   }
 
+  some() {
+    this.info() // метод экземпляра обязательно с this, нельзя просто как в Руби
+  }
+
   // метод класса(статический)
   static greetExtraTerrestrials(raceName) {
     return `Welcome to Planet Earth ${raceName}`;
