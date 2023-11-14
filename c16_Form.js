@@ -1,37 +1,34 @@
 //                                            Обработка форм
 
-//  2 Вариант с полным разделением JS кода от HTML
-document.getElementById('main-form').addEventListener('submit', checkForm0); // вешаем обработчик события на форму отсюда, чтобы не писать JS код в HTML фаиле(onsubmit="return checkForm(this)")
+//  2 Вариант(обращение по id) с полным разделением JS кода от HTML
+document.getElementById('main-form').addEventListener('submit', checkForm2); // вешаем обработчик события на форму отсюда, чтобы не писать JS код в HTML фаиле(onsubmit="return checkForm(this)")
 // 'submit' - параметр, говорит о том что мы отслеживаем событие отправки(аналог onsubmit атрибута, но без 'on')
 // checkForm0 - параметр указывающий на то какую функцию будем использовать
-function checkForm0(event) { // принимаем параметр события а не из формы(и можно удалить обработчик из формы)
+function checkForm2(event) { // принимаем параметр события а не из формы(и можно удалить обработчик из формы)
   event.preventDefault(); // отключаем стандартное поведение события(тут перезагрузка страницы)
   form = document.getElementById('main-form');
   // далее тот код что и в методе ниже
 }
 
 
-//  1 Вариант с JS кодом в HTML(onsubmit="return checkForm(this)")
+//  1 Вариант(обращение через this) с JS кодом в HTML(onsubmit="return checkForm(this)")
 function checkForm(form) {
   console.log('Check form'); // если не добавить return в значении обработчика перед функцией вывод в консоли будет лишь на секунду, тк при нажатии кнопки submit страница по умолчанию перезагружается
 
-  // 1й вариант получить значение введенное в поле пользователем:
+  // 1й вариант получить значение введенное в поле пользователем через id поля:
   var name0 = document.getElementById('username').value;
-  console.log(name0);
 
-  // 2й вариант(его и используем) получить значение введенное в поле пользователем:
+  // 2й вариант(его и используем) получить значение введенное в поле пользователем через объект формы:
   var name = form.username.value;
-  // form - содержит всю форму со всеми дочерними тегами
+  // form - объект содержит всю форму со всеми дочерними тегами
   // form.username - чтобы выбрать нужный тег обращаемся к значению его атрибута name
   // form.username.value - получаем значение введенное пользователем выбранного поля
   var pass = form.pass.value;
   var repass = form.repass.value;
   var state = form.state.value;
-  console.log(name + ' ' + pass + ' ' + repass + ' ' + state);
 
   // Валидация данных:
   var fail = '';
-
   if (name == '' || pass == '' || repass == '' || state == '')
     fail = 'Заполните все поля';
   else if (name.length < 2 || name.length > 50)
@@ -46,6 +43,7 @@ function checkForm(form) {
     document.getElementById('error').innerHTML = fail; // Заполняем тег для ошибок текстом ошибки из переменной
     return false; // и не отправляем форму на сервер
   }
+
   alert('Данные отправлены');
 
   // переход на другую страницу после отправки формы

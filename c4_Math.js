@@ -154,6 +154,20 @@ Math.floor(Math.random()*(b-a+1))+a; //=> 24 // Случайное целое ч
 
 
 
+//                                          Разное
+
+// Наибольший общий делитель
+const gcd = function (a, b) {
+  if (b === 0) return a;
+  return gcd(b, a % b);
+};
+console.log(gcd(66, 88)) //=> 22
+
+// альт запись флоат
+console.log(.5) //=> 0.5
+
+
+
 
 
 

@@ -30,7 +30,7 @@ console.log(arr); // [10, 20, 35, 25, 15, 10]
 
 
 
-//                                                For in
+//                                                For in(obj)
 
 // 1. Перебор ключей и значений хэша/объекта
 var obj = {item1:"This", item2:"is", item3:"an", item4:"example"};
@@ -50,7 +50,7 @@ for (var i in arr){
 
 
 
-//                                                For of
+//                                                For of(arr)
 
 // for..of (новый в ES6). for..of может просматривать все значения массива (без доступа к ним через их индекс).
 var arr = ["one","two","three"];

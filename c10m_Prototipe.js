@@ -54,6 +54,28 @@ Array.prototype.reverse = function() {
 
 
 
+// Создании функций под переменными свойств внутри функции
+function HTMLGen () {
+  this.div = s=>"<div>"+s+"</div>";
+  this.b = s=>"<b>"+s+"</b>";
+  this.p = s=>"<p>"+s+"</p>";
+}
+
+
+// Конвеерное создание функций по заданным именам
+function HTMLGen() {}
+
+['a', 'b', 'p', 'body', 'div', 'span', 'title'].forEach((tag) => {
+  HTMLGen.prototype[tag] = function(content) {
+    return '<' + tag + '>' + content + '</' + tag + '>'
+  }
+})
+
+var g = new HTMLGen();
+var paragraph = g.p('Hello, World!');
+var block = g.div(paragraph);
+console.log(paragraph); //=> '<p>Hello, World!</p>'
+console.log(block); //=> '<div><p>Hello, World!</p></div>'
 
 
 
