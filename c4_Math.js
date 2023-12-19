@@ -120,8 +120,11 @@ console.log(Math.log(8) / Math.log(2)); //=> 3  //Использование Mat
 
 console.log(Math.min(1, 0, 5, -3, 6, 2)); //=> -3
 console.log(Math.max(1, 0, 5, -3, 6, 2)); //=> 6
+var arr=[1,2,3,4,5];
+console.log(Math.max(...arr));  //=> 5
 
 Math.abs(-5); //=> 5  // модуль
+Math.abs(-5, -7, -1) //=> 5  // возвращает только абсолютное значение первого параметра
 
 Math.floor(5.95); //=> 5
 Math.floor(-1.1); //=> -2
