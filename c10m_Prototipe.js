@@ -79,6 +79,20 @@ console.log(block); //=> '<div><p>Hello, World!</p></div>'
 
 
 
+// Функция в функции (ООП)
+function SubstitutionCipher(abc1, abc2) {
+  this.encode = function (str) {
+    return str.split('').map(e => abc2[abc1.indexOf(e)] || e).join('');
+  }
+}
+var abc1 = "abcdefghijklmnopqrstuvwxyz";
+var abc2 = "etaoinshrdlucmfwypvbgkjqxz";
+var sub = new SubstitutionCipher(abc1, abc2);
+sub.encode("abc") // => "eta"
+sub.encode("xyz") // => "qxz"
+sub.encode("aeiou") // => "eirfg"
+
+
 
 
 
