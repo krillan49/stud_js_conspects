@@ -93,6 +93,14 @@ sub.encode("xyz") // => "qxz"
 sub.encode("aeiou") // => "eirfg"
 
 
+// Вызов функции в прототипе (тут прототип аналога метода filter())
+Array.prototype.filter = function (func) {
+  let res = [];
+  this.forEach(e => func(e) ? res.push(e) : null); // вызываем функцию от параметра добавляя аргумент в скобках
+  return res;
+}
+
+
 
 
 

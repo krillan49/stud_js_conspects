@@ -34,6 +34,15 @@ summa(5, 7);
 
 
 
+//                                        Посмотреть код функции по ее оператору
+
+// вызов функции без () передает ее как текст
+function derp() { return 1; }
+console.log(derp); //=> [Function: derp]
+console.log(derp.toString()); //=> function derp() { return 1; }
+
+
+
 //                                                 return
 
 function return_test(some_number) {
@@ -171,8 +180,59 @@ console.log(callbacks[3]()); //=> 3
 
 
 
+//                                    func(arg1)(arg2) Цепной вызов аргуметов (цепочке прототипов)
 
+// Тоесть мы должны после обработки аргумента вернуть функцию которая объединится со скобкой со след аргументами:
+// func(arg1)(arg2) -> func(arg1) вернет новую func которая и примет (arg2) -> func(arg2)
 
+// 1 дополнительный аргумент можно выразить как функцию
+function sum(a){
+  return function(x) { return a + x; }; // Вариант 1 - возвращаем обычную функцию
+  return x => a + x;                    // Вариант 2 - возвращаем стрелочную функцию
+}
+console.log(sum(3)(6)); //=> 8
+
+// Универсальный вариант чтобы можно было вызвать и 2 аргумента и 1 + 1 цепной
+function sum(a, b) {
+  return arguments.length == 2 ? a+b : (n)=>a+n;
+};
+console.log(sum(3)(6)); //=> 8
+console.log(sum(3, 6)); //=> 8
+
+// Пример: прогон цепного параметра по списку функций
+function chained(functions) {
+  return function(input) {
+    functions.forEach(f => input = f(input));
+    return input;
+  };
+}
+console.log(chained([(x)=>x.split(''), (x)=>x.reverse(), (x)=>x.join('+')])('ABC')); //=> 'C+B+A'
+
+// Многозвенная цепочка
+function add(a){ // обернем функцию sum в «замыкание»/closure.
+  function sum(b){ // принимает следующий параметр в цепочке
+    if (typeof(b) == 'undefined') return a; // undefined будет когда функция получит () те не будет аргумента
+    a += b; // параметр a из надфункции add, он меняется, тк каждый раз sum вызывается из той же области add
+    return sum; // возвращаем функцию, которая примет след параметр в цепочке
+  }
+  return sum; // возвращаем то что в итоге вернет функция sum (тоже если написать return в начале перед ней)
+}
+console.log(add(1)(2)(3)(4)()); //=> 10
+
+// Многозвенная цепочка при помощи рекурсии
+function add(sum){
+  return m => m ? add(sum + m) : sum;
+}
+console.log(add(1)(2)(3)(4)()); //=> 10
+
+// Сложная цепочка с любым числом параметров
+function sum(a, b){
+  return a.reduce((pre, cur)=> pre + cur , b);
+}
+function add(...a){
+  return (...b) => b.length ? add(sum(b, sum(a, 0))) : sum(a, 0)
+}
+console.log(add(2,3,4)(5)(2)(8,6,3,5)()) //=> 38
 
 
 

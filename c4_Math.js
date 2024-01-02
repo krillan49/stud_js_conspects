@@ -84,6 +84,9 @@ isNaN(NaN) //=> true
 Number.NEGATIVE_INFINITY //=> -Infinity значение представляет отрицательную бесконечность.
 Number.POSITIVE_INFINITY //=> Infinity значение представляет положительную бесконечность..
 
+Number.MAX_SAFE_INTEGER //=> 9007199254740991 максимально возможное целое число JS
+Number.isSafeInteger(n) // проверяет доступно ли это целое число (53 бита или меньше)
+
 
 // методы объектов Number: toFixed(), toExponential() и toPrecision()
 1.11911.toFixed(2) //=> '1.12'  округление до 2х знаков

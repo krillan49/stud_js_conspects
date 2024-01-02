@@ -38,7 +38,7 @@ console.log(b); //=> 1
 
 //                                        Определить тип данных typeof
 
-// целые(Integer), с плавающей точкой(Float), строки(String), true и false(Boolean) итд
+// целые(Integer)(максимум 53 бита), с плавающей точкой(Float), строки(String), true и false(Boolean) итд
 
 // Определить тип при помощи typeof
 typeof 42;                 //=> "number"
