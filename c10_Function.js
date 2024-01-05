@@ -199,9 +199,17 @@ function sum(a, b) {
 console.log(sum(3)(6)); //=> 8
 console.log(sum(3, 6)); //=> 8
 
+// Пример: передача цепного параметра в передаваемую в первый пораметр - функцию fn
+function flip(fn) {
+	// сначала вызываем функцию без имени с параметрами 4, 5
+  return function(...args) { return fn(...args.reverse()); };
+}
+function print(a,b) { return a + " -> " + b;}
+flip(print)(4,5) // returns "5 -> 4"
+
 // Пример: прогон цепного параметра по списку функций
 function chained(functions) {
-  return function(input) {
+  return function(input) { // сначала вызываем функцию без имени с параметром 'ABC'
     functions.forEach(f => input = f(input));
     return input;
   };

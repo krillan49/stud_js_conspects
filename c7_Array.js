@@ -109,7 +109,13 @@ console.log(arr); //=> [ 2, 4 ]
 [140000, 104, 99].sort((a, b) => b - a);                     //=> [140000, 104, 99]  // убывание
 [{"k": 1, "n": 3},{"k": 3, "n": 2}].sort((a, b) => b['k'] - a['k']); //=> [ { k: 3, n: 2 }, { k: 1, n: 3 } ]
 
-// Сортировка по 2м параметрам
+// Сортировка по 2м параметрам (ES6)
+arr = [ { name: 'Dog', legs: 4 }, { name: 'Cat', legs: 4 }, { name: 'Bird', legs: 2 } ]
+animals.sort((a, b) => a.legs - b.legs || a.name.localeCompare(b.name));
+//=> [ { name: 'Bird', legs: 2 }, { name: 'Cat', legs: 4 }, { name: 'Dog', legs: 4 } ]
+// a.localeCompare(b) - метод строковой сортировки
+
+// Сортировка по нескольким параметрам
 let arr = [1,2,3,4,5,6,100,999];
 arr.sort((a,b)=>{
   if (a%2 == b%2) return a-b; //если a и b оба четные или оба нечетные числа, сначала меньшее
