@@ -115,6 +115,9 @@ console.log( pushElement([1],2,3) ); //=> [ 1, 2, 3 ]
 var ArrowFunc = (arr) => arr.map(n => String.fromCharCode(n));
 // n каждый элемент массива arr
 
+// Без параметров
+const Title=()=>'<h1>Hello</h1>';
+
 
 
 //                                             Spread Operator
