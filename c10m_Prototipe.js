@@ -33,6 +33,18 @@ boris.name()     //=> "Boris"
 boris.name("Bobo")
 boris.name()     //=> "Bobo"
 
+// Альтер варик с определением функций внутри
+function Counter() {
+  var _count = 0;
+
+  this.check = function() {
+    return _count;
+  }
+  this.increment = function() {
+    _count++;
+  }
+};
+
 
 // Новая функция для встроенного "класса" String
 String.prototype.reverse = function () {
