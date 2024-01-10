@@ -26,6 +26,11 @@ console.log(arr);    //=> [ 5, true, 'stroka', 'word', 0, -100 ]
 let arr = Array.from({length:3},()=>Array(4).fill(0)) //=> [ [ 0, 0, 0, 0 ], [ 0, 0, 0, 0 ], [ 0, 0, 0, 0 ] ]
 
 
+// Сравнить массивы
+[2, 4, 5] == [2, 4, 5]; //=> false
+[2, 4, 5].toString() == [2, 4, 5].toString(); //=> true
+
+
 
 //                                        push(), pop(), shift(), unshift()
 

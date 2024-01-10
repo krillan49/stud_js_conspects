@@ -114,6 +114,25 @@ Array.prototype.filter = function (func) {
 
 
 
+//                                                Функциональное наследование
+
+// new - оператор в JavaScript создает объекты, выполнив следующие три шага:
+// 1. Сначала он создает новый пустой объект.
+// 2. Затем он устанавливает свойство `.__proto__` нового объекта в соответствии со свойством прототипа вызываемой функции.
+// 3. Наконец, оператор вызывает функцию и передает новый объект как ссылку «this».
+
+function Cylon(model){
+  this.model = model;
+  this.attack = function() { return "Destroy all humans!";} // как метод класса (наследуется)
+}
+
+function HumanSkin(model){
+  this.__proto__= new Cylon(model); // наследование при помощи __proto__ и объекта материнской функции Cylon
+  this.infiltrate = function() { return "Infiltrate the colonies";} // уникальный метод подкласса
+}
+
+
+
 
 
 
