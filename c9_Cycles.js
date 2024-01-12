@@ -45,7 +45,7 @@ for (var key in obj){ // перебираем ключи хэша
 // 2. Перебор индексов и значений массива. Хотя for..in можно использовать для обхода массива, это не рекомендуется, поскольку в некоторых случаях порядок может быть неожиданным.
 // При использовании for..in с массивом ключ (индекс) всегда является строкой, а не числом
 var arr = ["one","two","three"];
-for (var i in arr){
+for (let i in arr){
   console.log(i); //=> 0 1 2
   console.log(arr[i]); //=> one two three
 }
@@ -56,7 +56,7 @@ for (var i in arr){
 
 // for..of (новый в ES6). for..of может просматривать все значения массива (без доступа к ним через их индекс).
 var arr = ["one","two","three"];
-for (var value of arr){
+for (let value of arr){
   console.log(value); //=> one two three
 }
 
