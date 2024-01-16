@@ -42,8 +42,9 @@ console.log(Person.greetExtraTerrestrials('Gigant'));
 
 
 
-//                                               Сеттеры
+//                                               Сеттеры и геттеры
 
+// кастомные
 class Dinglemouse {
   constructor() {
     this.name = this.age = this.sex = 0
@@ -64,6 +65,53 @@ class Dinglemouse {
     return `Hello. My name is ${this.name}. I am ${this.age}. I am ${this.sex == 'M' ? "male" : "female"}.`
   }
 }
+
+// методы с префиксом get или set
+class Some {
+  constructor(some, some2) {
+    this._some = some; // _ чтобы имя геттера не было таким же как имя свойства
+    this.some2 = some2;
+  }
+  // Геттеры и сеттеры свойств экземпляра существуют по умолчанию но можно их и написать самому
+  get some() {
+    return this._some;
+  }
+  set some(n){
+    this._some = n;
+  }
+}
+s = new Some(1, 2);
+console.log(s.some); //=> 1
+s.some = 3;
+console.log(s.some); //=> 3
+// существующие по умолчанию
+console.log(s.some2); //=> 2
+s.some2 = 5;
+console.log(s.some2); //=> 5
+
+// Удобно использовать сеттеры для свойств зависящих от других свойств, тк по умолчанию они не будут меняться
+// Можно использовать сеттеры для переназначения свойств от зависимых от них свойств
+class Cuboid {
+  constructor(length, width, height) {
+    this.length = length;
+    this.width = width;
+    this.height = height;
+    this._volume = this.length * this.width * this.height;
+  }
+  get volume() {
+    return this.length * this.width * this.height;
+  }
+  set volume(n) { // так задав зависимую велицину изменяем от нее свойство(только тут для куба а не кубоида(но можно перенести потом в наследование))
+    this.length = Math.cbrt(n);
+  }
+}
+
+c = new Cuboid(2,3,4);
+console.log(c._volume); //=> 24
+console.log(c.volume); //=> 24
+c.length = 5;
+console.log(c._volume); //=> 24 // не исзменилось
+console.log(c.volume); //=> 60
 
 
 
@@ -145,6 +193,67 @@ Bee.prototype.unloadPollen = function() {
   this.hive.addPollen(this.capacity); // используем улей данной пчелы чтоб добавить в него мед
 }
 
+
+
+//                                              Сингелтон-класс
+
+// Синглтон — это шаблон проектирования, который ограничивает создание экземпляра класса одним объектом
+class Singleton {
+  constructor() {
+    if (!!Singleton.some) return Singleton.some; // проверяем существует ли уже экземпляр клааса, если да возвращаем его
+    Singleton.some = this; // если не существует то привязываем текущий экземпляр к классу через ??параметр (тут some)
+    return this; // без этого также сработало бы, но хорошей практикой является сохранение неизменного возврата из метода.
+  }
+}
+let obj1 = new Singleton(), obj2 = new Singleton();
+console.log(obj1 === obj2); // => true
+obj1.test = 1;
+console.log(obj2.test); // => 1
+
+// применение - счетчик - при вызове Class.getNumber() возвращает сперва 1 потом 2 потом 4 итод
+class Class {
+  constructor() {
+    if (!!Class.some) return Class.some;
+    Class.some = this;
+    this.number = 0;
+    return this;
+  }
+  add(){
+    this.number ? this.number *= 2 : this.number += 1;
+    return this.number;
+  }
+  static getNumber() {
+    return new Class().add();
+  }
+}
+
+
+// Тоже что и выше с переменной класса (уже не сингелтон ??)
+class Class {
+  static number = 1
+
+  static getNumber() {
+    const currentVal = Class.number
+    Class.number *= 2
+    return currentVal
+  }
+}
+// тоже
+class Class {
+  static value = 0.5;
+  static getNumber() {
+    this.value = this.value*2
+    return this.value;
+  }
+}
+// тоже
+let count = 0.5;
+
+class Class {
+  static getNumber() {
+    return count *= 2;
+  }
+}
 
 
 
