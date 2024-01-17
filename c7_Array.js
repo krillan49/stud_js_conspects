@@ -31,6 +31,12 @@ let arr = Array.from({length:3},()=>Array(4).fill(0)) //=> [ [ 0, 0, 0, 0 ], [ 0
 [2, 4, 5].toString() == [2, 4, 5].toString(); //=> true
 
 
+// меняем элементы друг на друга
+for (var i = 0; i < arr.length - 1; i += 2) {
+  [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
+}
+
+
 
 //                                        push(), pop(), shift(), unshift()
 
