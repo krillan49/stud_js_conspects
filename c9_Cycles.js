@@ -31,6 +31,12 @@ for (var i = 0; i < arr.length; i++) {
 console.log(arr); // [10, 20, 35, 25, 15, 10]
 
 
+// Много переменных в условии
+for(let i = 2, s = Math.sqrt(n); i <= s; i++) {
+  if(n % i === 0) return false;
+}
+
+
 
 //                                                For in(obj)
 

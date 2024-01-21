@@ -200,6 +200,16 @@ Object.is(-0, +0); //=> false
 
 
 
+//                                           Разное
+
+
+// Проверка на простое число. Временная сложность:O(sqrt(n)) Пространственная сложность:O(1)
+function isPrime(n){
+  for(let k = 2, s = Math.sqrt(n); k <= s; k++) { if(n % k === 0) return false; }
+  return n > 1;
+}
+
+
 
 
 

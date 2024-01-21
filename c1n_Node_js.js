@@ -26,6 +26,15 @@ console.log(Buffer.from("SGVsbG8gV29ybGQ=", 'base64').toString('ascii')); //=> H
 console.log(Buffer.from("SGVsbG8gV29ybGQ=", 'base64').toString('utf8'));  //=> Hello World
 
 
+// sha256
+// вар 1
+const sha256 = require('sha256');
+sha256('bacon');                                    // 9cca070334...
+// вар 2
+const { createHash } = require('crypto');
+createHash('sha256').update('bacon').digest('hex'); // 9cca070334...
+
+
 
 
 

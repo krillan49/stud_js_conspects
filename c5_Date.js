@@ -42,6 +42,10 @@ let seconds = parseInt((b-a)/1000);
 
 
 
+// Даьа из числа дней
+new Date(2021, 0, 222).toLocaleDateString(`en`, {month: 'long', day: 'numeric'}) //=> August 10
+
+
 
 
 
