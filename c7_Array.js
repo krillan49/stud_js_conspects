@@ -135,6 +135,9 @@ arr.sort((a,b)=>{
 })
 console.log(arr) //=> [ 1, 3, 5, 999, 2, 4, 6, 100 ]
 
+// c игнором регистра
+arr.sort((a, b) => a.toLowerCase() > b.toLowerCase() ? 1 : -1);
+
 
 
 //                                            Другие методы массивов

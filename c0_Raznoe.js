@@ -2,7 +2,12 @@
 'http://www.codewars.com/users/' + encodeURIComponent("aaa "); //=> http://www.codewars.com/users/aaa%20
 
 
-+eval('('+v1.toFixed(0)+(v2=v2.toFixed(0))+')'+op+v2).toFixed(0)
+// eval()
+console.log(eval('2 + 2')); //=> 4
+console.log(eval(new String('2 + 2'))); //=> '2 + 2'
+console.log(eval('2 + 2') === eval('4')); //=> true
+console.log(eval('typeof "a"')) //=> string
+console.log(eval('Math.sqrt(4)')) //=> 2
 
 
 // Способ создания диапазона чисел на примере диапазона от 1 до 100
