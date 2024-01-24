@@ -10,6 +10,11 @@ console.log(eval('typeof "a"')) //=> string
 console.log(eval('Math.sqrt(4)')) //=> 2
 
 
+// flatten
+var _ = require("underscore")
+_.flatten(arr)
+
+
 // Способ создания диапазона чисел на примере диапазона от 1 до 100
 // for цикл:
 var numbers = []
@@ -37,6 +42,8 @@ Foo.name                // == "Foo"
 Foo.prototype.isPrototypeOf(foo);   // == true
 Foo.prototype.bar = function (x) {return x+x;};
 foo.bar(21);            // == 42
+
+Array.isArray(e)
 
 
 
