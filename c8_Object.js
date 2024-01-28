@@ -91,12 +91,17 @@ Object.keys(rooms) //=> [ 'kroker', 'gonzik', 'rS' ]
 Object.values(some) //=> [ 'Gigant', 'Krutitsa', 'Robot Serenka' ]
 Object.entries(some) //=> [ [ 'kroker', 'Gigant' ], [ 'gonzik', 'Krutitsa' ], [ 'rS', 'Robot Serenka' ] ]
 
+Object.fromEntries([ [ 'John', 0 ], [ 'Brian', 1 ] ])) //=> { John: 0, Brian: 1 }
+
 // assign - создает хэш из переменных
 var name = 'Kroker', age = 38, happy = true;
 var obj = Object.assign({ name, age, happy });
 console.log(obj); //=> { name: 'Kroker', age: 38, happy: true }
 var obj2 = Object.assign(this, { name, age, happy }); // так применяется в классе, с this для экземпляра класса
 console.log(obj2); //=> { name: 'Kroker', age: 38, happy: true }
+
+// из массива
+Object.assign({}, ['a','b','c']); // {0:"a", 1:"b", 2:"c"}
 
 
 

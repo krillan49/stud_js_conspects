@@ -195,6 +195,16 @@ const gcd = function (a, b) {
 };
 console.log(gcd(66, 88)) //=> 22
 
+// gcd для массива значений
+function greatestCommonFactor(array) {
+  function gcd(a, b) {
+    if (b === 0) return a;
+    return gcd(b, a % b);
+  }
+  return array.reduce(gcd);
+};
+console.log(greatestCommonFactor([468, 156, 806, 312, 442])) //=> 26
+
 
 // Проверка на простое число. Временная сложность:O(sqrt(n)) Пространственная сложность:O(1)
 function isPrime(n){
