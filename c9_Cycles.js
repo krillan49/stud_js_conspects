@@ -42,7 +42,7 @@ for(let i = 2, s = Math.sqrt(n); i <= s; i++) {
 
 // 1. Перебор ключей и значений хэша/объекта
 var obj = {item1:"This", item2:"is", item3:"an", item4:"example"};
-for (var key in obj){ // перебираем ключи хэша
+for (let key in obj){ // перебираем ключи хэша
   console.log(key); //=> item1 item2 item3 item4
   console.log(obj[key]); //=> This is an example  // перебираем значения по ключам
 }

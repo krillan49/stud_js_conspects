@@ -213,6 +213,11 @@ function isPrime(n){
 }
 
 
+// Строковый сочет
+"abc" > "adc"; //=> false
+"adc" > "acc"; //=> true
+
+
 
 
 
