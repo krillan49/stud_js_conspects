@@ -7,7 +7,7 @@ var obj = new Object() // через конструктор
 var obj = {} // или так
 
 // Можно определить атрибуты объекта во время инициализации:
-var animal = {species:"dog"}
+let animal = {species:"dog"}
 animal.species; //=> 'dog'
 animal['species']; //=> 'dog'
 animal.some; //=> undefined

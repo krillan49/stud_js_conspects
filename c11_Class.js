@@ -257,7 +257,30 @@ class Class {
 
 
 
+//                                             Генерация классов
 
+// вар 1
+function makeClass(...vars) {
+  return function(...pars) { vars.forEach((p, i) => this[p] = pars[i]) }; // возвращаем функцию класса, которая принимает значения для переменных и назначает их в переменные
+}
+
+const Animal = makeClass("name","species","age","health","weight","color") // имена переменных экземпляра
+const dog = new Animal('Bob','Dog','5','good','50lb','brown')
+console.log(dog.name) //=> 'Bob'
+
+
+// вар 2
+function makeClass(...vars) {
+  return class {
+    constructor(...pars) {
+      vars.forEach((p, i) => this[p] = pars[i]);
+    }
+  }
+}
+
+const Animal = makeClass("name","species","age","health","weight","color")
+const dog = new Animal('Bob','Dog','5','good','50lb','brown')
+console.log(dog.name) //=> 'Bob'
 
 
 

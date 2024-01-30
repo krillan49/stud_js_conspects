@@ -233,6 +233,21 @@ function counter(){
 // Тоесть замыкание это меморизация внутри функции ??
 
 
+// Возвращаем функцию, которую можно вызвать только 1 раз
+function once(fn) {
+  let call = true;
+  return function(p) {
+    if (call) {
+      call = false;
+      return fn(p);
+    };
+  }
+}
+logOnce = once(console.log);
+logOnce("foo"); //=> "foo"
+logOnce("bar"); //=> no effect
+
+
 
 //                                    func(arg1)(arg2) Цепной вызов аргуметов (цепочке прототипов)
 
@@ -295,6 +310,20 @@ function add(...a){
   return (...b) => b.length ? add(sum(b, sum(a, 0))) : sum(a, 0)
 }
 console.log(add(2,3,4)(5)(2)(8,6,3,5)()) //=> 38
+
+
+// Передаем функции которые обрабатывают цепной аргумент по очереди, одна над результатом другой multTwo(addOne(5))
+function compose(...fns) {
+  return function(x) { // принимаем цепной аргумент этой возвращенной функцией
+    for (let i = fns.length-1; i >= 0 ; i--) {
+      x = fns[i](x); // обрабатываем фргумент/рез прошлой функции очередной функцией
+    }
+    return x;
+  };
+}
+const addOne = (a) => a + 1;
+const multTwo = (b) => b * 2;
+console.log(compose(multTwo, addOne)(5)); //=> 12 // multTwo(addOne(5))  - получаем аналог этого
 
 
 
