@@ -52,6 +52,22 @@ console.log(res); //=> { value: 5, done: true }
 console.log(res.value); //=> 5  // те возвращено 5 чисел, которые заняли интервал между: от 0 до 10
 
 
+// Совсем кастомный итератор или это лучше в замыкания ??
+function makeLooper(str) {
+  let i = 0;
+  return function() {
+    let res = str[i];
+    i = i == str.length - 1 ? 0 : i + 1;
+    return res;
+  }
+}
+let abc = makeLooper('abc');
+console.log(abc()); //=> 'a'
+console.log(abc()); //=> 'b'
+console.log(abc()); //=> 'c'
+console.log(abc()); //=> 'a'
+
+
 
 //                                           Функции - генераторы
 

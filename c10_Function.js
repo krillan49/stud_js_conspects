@@ -36,7 +36,7 @@ summa(5, 7);
 
 //                                        Посмотреть код функции по ее оператору
 
-// вызов функции без () передает ее как текст
+// вызов функции без () передает ее как переменную
 function derp() { return 1; }
 console.log(derp); //=> [Function: derp]
 console.log(derp.toString()); //=> function derp() { return 1; }
