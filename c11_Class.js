@@ -41,6 +41,16 @@ console.log(kroker.age);    //=> 25
 console.log(Person.greetExtraTerrestrials('Gigant'));
 
 
+// Определение метода в конструкторе
+class File {
+  constructor(fullName){
+    this.getName = () => fullName;
+  }
+}
+var myFile = new File("Lorem Ipsum.txt");
+console.log(myFile.getName()) //=> Lorem Ipsum.txt
+
+
 
 //                                               Сеттеры и геттеры
 
@@ -66,7 +76,7 @@ class Dinglemouse {
   }
 }
 
-// методы с префиксом get или set
+// методы с get или set. Отличия от кастомных, что вызываются как свойства без (). Мы какбы оборачиваем свойства в методы, от которых их будем вызывать или менять
 class Some {
   constructor(some, some2) {
     this._some = some; // _ чтобы имя геттера не было таким же как имя свойства
@@ -89,6 +99,20 @@ console.log(s.some2); //=> 2
 s.some2 = 5;
 console.log(s.some2); //=> 5
 
+// Для того чтобы например переменную можно было только читать, содаем только геттер
+class File {
+  constructor(fullName) {
+    this._fullName = fullName; // свойство fullName должно быть доступно только для чтения. Это означает, что попытки переназначить fullName новое значение должны завершиться неудачей, и оно должно сохранить свое исходное значение
+  }
+  get fullName() {
+    return this._fullName;
+  }
+}
+let myFile = new File("hello.txt");
+console.log(myFile.fullName); //=> hello.txt
+myFile.fullName = "goodbye.txt"; // Переназначение должно завершиться неудачей
+console.log(myFile.fullName); //=> "hello.txt"
+
 // Удобно использовать сеттеры для свойств зависящих от других свойств, тк по умолчанию они не будут меняться
 // Можно использовать сеттеры для переназначения свойств от зависимых от них свойств
 class Cuboid {
@@ -101,7 +125,7 @@ class Cuboid {
   get volume() {
     return this.length * this.width * this.height;
   }
-  set volume(n) { // так задав зависимую велицину изменяем от нее свойство(только тут для куба а не кубоида(но можно перенести потом в наследование))
+  set volume(n) { // так задав зависимую величину изменяем от нее свойство(только тут для куба а не кубоида(но можно перенести потом в наследование))
     this.length = Math.cbrt(n);
   }
 }

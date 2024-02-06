@@ -54,23 +54,6 @@ typeof function some() {}  //=> function
 
 
 
-//                                             Тип данных и ||
-
-console.log(NaN || 1);                //=> 1
-console.log(false || 1);              //=> 1
-console.log(undefined || 1);          //=> 1
-console.log(null || 1);               //=> 1
-console.log([] || 1);                 //=> []
-console.log('' || 1);                 //=> 1
-console.log(0 || 1);                  //=> 1
-console.log(new Object() || 1);       //=> {}
-console.log(function some() {} || 1); //=> [Function: some]
-console.log(undeclaredVariable || 1); //=> ReferenceError
-
-undefined || null //=> null
-
-
-
 //                                         Изменить тип данных
 
 // Оператор + со строкой преобразует и другое слогаемое в строку(тут из Integer)
@@ -79,17 +62,6 @@ undefined || null //=> null
 // Альтернативный перевод строки в число. чтобы преобразовать String в Int в JS. ('523' * 1 == 523)
 '53' * 1 //=> 53  // number
 '53.6' * 1 //=> 53.6  // number
-
-
-
-//                                               Особенности
-
-// Странная херня
-console.log(1 == '1'); //=> true
-console.log(1 === '1'); //=> false
-console.log(1 === 1); //=> true
-
-console.log([ 'five', 'seven' ] == 'five,seven') //=> true
 
 
 

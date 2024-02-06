@@ -1,23 +1,47 @@
+// Можно сравнивать операторами == != > < >= <=  и мб еще чемто
+// Логическое и - &&; логическое или - ||
+
+
+
 //                                            Особенности условий
 
-function trueOrFalse(val){
-  if (val)    return 'true';
-  else     return 'false';
-}
-trueOrFalse(0); // "false"
-trueOrFalse(""); // "false"
-trueOrFalse([]); //=> "true"
-trueOrFalse(new Object()); //=> "true"
+// Истинность/ложность типов данных
+const trueOrFalse = (val) => val ? 'true' : 'false';
+trueOrFalse(undefined);          //=> "false"
+trueOrFalse(null);               //=> "false"
+trueOrFalse(NaN);                //=> "false"
+trueOrFalse(0);                  //=> "false"
+trueOrFalse("");                 //=> "false"
+trueOrFalse("0");                //=> "true"
+trueOrFalse([]);                 //=> "true"
+trueOrFalse(new Object());       //=> "true"
 trueOrFalse(function some() {}); //=> "true"
+
+// Условие || и типы данных
+console.log(undefined || null);       //=> null
+console.log(null || undefined);       //=> undefined
+console.log(NaN || 1);                //=> 1
+console.log(false || 1);              //=> 1
+console.log(undefined || 1);          //=> 1
+console.log(null || 1);               //=> 1
+console.log([] || 1);                 //=> []
+console.log('' || 1);                 //=> 1
+console.log(0 || 1);                  //=> 1
+console.log(new Object() || 1);       //=> {}
+console.log(function some() {} || 1); //=> [Function: some]
+console.log(undeclaredVariable || 1); //=> ReferenceError
+
+// Особенности равенств
+console.log(1 == '1');  //=> true
+console.log(1 === '1'); //=> false
+console.log([ 'five', 'seven' ] == 'five,seven')  //=> true
+console.log([ 'five', 'seven' ] === 'five,seven') //=> false
 
 
 
 //                                               if - else
 
-// Можно сравнивать операторами == != > < >= <=  и мб еще чемто
-// Логическое и - &&; логическое или - ||
-
-var a = 2, b = 10, isHas = true, isNot = false;
+let a = 2, b = 10, isHas = true, isNot = false;
 
 if (a == b) {                                  // условие пишем в скобках, далее фигурные скобки для тела условия
   console.log("a равно b");
@@ -61,11 +85,12 @@ if (a < 7) console.log(a + 'b'); //=> 2b
 //                                               Тернарная операция
 
 // Тернарная операция - это сокращенная форма if else
-var y = 90, z = 8;
-var res = y < z ? (y + z) : (y - z); // скобки только для действий??
+let y = 90, z = 8;
+let res = y < z ? (y + z) : y - z; // скобки не обязательны(нужны только для некоторых действий)
 console.log(res); //=> 82
 
-var son = y > z && z < 5 ? 'third' : y > z ? 'second' : 'first'; // несколько действий
+// Несколько действий
+let son = y > z && z < 5 ? 'third' : y > z ? 'second' : 'first';
 
 
 
@@ -90,7 +115,7 @@ switch (x) { // Проверяем переменную x
 
 
 // Сокращенная запись(не используем break тк есть return ??)
-switch ( month ){
+switch ( month ) {
   case 2: return 28
   case 4: case 6: case 9: case 11: return 30 // если результат такой же
   default: return 31
