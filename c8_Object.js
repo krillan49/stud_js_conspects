@@ -103,6 +103,9 @@ console.log(obj2); //=> { name: 'Kroker', age: 38, happy: true }
 // из массива
 Object.assign({}, ['a','b','c']); // {0:"a", 1:"b", 2:"c"}
 
+// Из массива объектов создаем объект с элементами каждого, при повторении ключа осталяем 1й(поэтому реверс)
+Object.assign({}, ...xs.filter(x => typeof x === 'object').reverse());
+
 
 
 
