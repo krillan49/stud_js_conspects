@@ -120,6 +120,21 @@ gen.next().value; //=> '1 x 4 = 4'
 gen.next().value; //=> '1 x 5 = 5'
 
 
+// Генератор фибоначе просто при помощи замыкания, без спец штук
+function genfib(){
+  let a = [0, 1];
+  return function fib(){
+    a.push(a[a.length-1] + a[a.length-2]);
+    return a[a.length-3];
+  }
+}
+let fib = genfib();
+console.log(fib()); //=> 0
+console.log(fib()); //=> 1
+console.log(fib()); //=> 1
+console.log(fib()); //=> 2
+
+
 
 
 

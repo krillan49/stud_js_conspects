@@ -41,6 +41,7 @@ str = str.slice(0, i) + str.slice(i + 1);
 "My".concat("name","is","John");    //=> MynameisJohn  // сложение строк альтер вместо +
 'Aa'.repeat(5);                     //=> "AaAaAaAaAa"
 " \n  \n\n\na  b  c\t\t\t ".trim(); //=> 'a  b  c'     // удаляет все пробельные элементы в начале и конце
+trimRight()
 
 
 //                                                 split()
