@@ -87,6 +87,10 @@ let arr = [5, 6];
 arr.fill('a');
 arr; //=> [ 'a', 'a' ]
 
+// flat  - разглаживание массивов
+console.log([1,[2, 3, [], [4, [], 5]]].flat(Infinity)); //=> [ 1, 2, 3, 4, 5 ]
+console.log([1,[2, 3, [], [4, [], 5]]].flat(1)); //=> [ 1, 2, 3, [], [ 4, [], 5 ] ]
+
 
 
 //                                    join()  toString()  JSON.stringify()

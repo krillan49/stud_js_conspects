@@ -139,6 +139,39 @@ console.log(c.volume); //=> 60
 
 
 
+// Добавимть геттеры и сеттеры в существующий класс
+class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  getName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+}
+// Чтобы добавить новые геттеры и сеттеры в класс нужно использовать синтаксис, тк не получится использоватьпросто 'Person.prototype =' как в функциональном стиле
+Object.defineProperties(Person.prototype, {
+  name: {
+    get: function() {
+      return this.firstName + ' ' + this.lastName;
+    },
+    set: function(n) {
+      let name = n.split(' ');
+      this.firstName = name[0];
+      this.lastName  = name[1]
+    }
+  }
+});
+let augustusCole = new Person('Augustus', 'Kola');
+augustusCole.name = 'Cole Train';
+console.log(augustusCole.firstName); //=> 'Cole'
+console.log(augustusCole.lastName);  //=> 'Train'
+console.log(augustusCole.getName()); //=> 'Cole Train'
+console.log(augustusCole.name);      //=> 'Cole Train'
+
+
+
 //                                             Наследование. super
 
 // Базовый(материнский) класс

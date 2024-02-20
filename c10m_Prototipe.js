@@ -267,6 +267,40 @@ function NamedOne(first, last) {
 
 
 
+// Установка геттеров и сеттеров через прототип
+function Name(first, last) {
+  this.first = first;
+  this.last = last;
+}
+
+Name.prototype = {
+  get fullName() {
+    return this.first + " " + this.last;
+  },
+
+  set fullName(name) {
+    var names = name.split(" ");
+    this.first = names[0];
+    this.last = names[1];
+  }
+};
+// Теперь вы можете установить fullName, и firstбудет lastобновляться и наоборот.
+n = new Name('Claude', 'Monet')
+console.log(n.first); // "Claude"
+console.log(n.last); // "Monet"
+console.log(n.fullName); // "Claude Monet"
+n.fullName = "Gustav Klimt"
+console.log(n.first); // "Gustav"
+console.log(n.last); // "Klimt"
+
+
+
+
+
+
+
+
+
 
 
 
