@@ -38,7 +38,8 @@ function localst() {
 //                                               методы localstorage
 
 function prosto_dla_obertki() { // функция просто чтоб не срабатывало
-  localStorage.clear();         // Очистить localStorage
+  localStorage.clear();         // Очистить localStorage (для консоли разработчика в браузере ?7)
+  window.localStorage.clear();  // Очистить localStorage
   window.localStorage.length(); // выведет число элементов в локалсторедж
   window.localStorage.key(0);   // получаем по индексам ключей(??) локалсторедж собственно ключи
 }
