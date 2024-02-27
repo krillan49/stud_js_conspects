@@ -1,6 +1,8 @@
 // Функция кодирования пробельных и других символов URL-адресов
 'http://www.codewars.com/users/' + encodeURIComponent("aaa "); //=> http://www.codewars.com/users/aaa%20
 
+// перевод например строки в бигинт
+BigInt(a)
 
 // eval()
 console.log(eval('2 + 2')); //=> 4
@@ -45,6 +47,24 @@ foo.bar(21);            // == 42
 
 Array.isArray(e)
 
+
+
+// new - оператор в JavaScript, который создает объекты, выполнив следующие три шага:
+// 1. Создает новый пустой объект
+// 2. Устанавливает свойство `.__proto__` нового объекта в соответствии со свойством прототипа вызываемой функции
+// 3. Оператор вызывает функцию и передает новый объект как ссылку «this».
+// вот что new делает (или, по крайней мере, кажется, что делает):
+function New(func) {
+  var res = {};
+  if (func.prototype !== null) {
+    res.__proto__ = func.prototype;
+  }
+  var ret = func.apply(res, Array.prototype.slice.call(arguments, 1));
+  if ((typeof ret === "object" || typeof ret === "function") && ret !== null) {
+    return ret;
+  }
+  return res;
+}
 
 
 

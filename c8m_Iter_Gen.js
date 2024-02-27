@@ -19,10 +19,9 @@
 
 // пример позволяет создать простой итератор диапазона, который определяет последовательность целых чисел от начала (включительно) до конца (исключительно), отстоящих друг от друга на шаг. Его окончательное возвращаемое значение — это размер созданной им последовательности, отслеживаемый переменной count.
 function makeRangeIterator(start = 0, end = Infinity, step = 1) {
-  let i = start, count = 0;
-
+  let i = start, count = 0; // count - счетчик, чтобы проверить какая сейчас итерация
   const rangeIterator = { // те итератор это объект с методом next()
-    next() {
+    next() { // при вызове возвращает следующее значение и доп параметры в зависимости от данных (тут конца диапазона)
       let res;
       if (i < end) { // тоесть если итерация еще не завершена
         res = { value: i, done: false };
@@ -33,7 +32,6 @@ function makeRangeIterator(start = 0, end = Infinity, step = 1) {
       return { value: count, done: true }; // возвращается при каждом вызове next() когда итерация завершена
     }
   };
-
   return rangeIterator;
 }
 
@@ -52,7 +50,41 @@ console.log(res); //=> { value: 5, done: true }
 console.log(res.value); //=> 5  // те возвращено 5 чисел, которые заняли интервал между: от 0 до 10
 
 
-// Совсем кастомный итератор или это лучше в замыкания ??
+// Пример итератора для массива
+const createIterator = (arr) => {
+  let i = 0;
+  const arrIterator = {
+    index: 0,
+    nextEl() {
+      if (i < arr.length) {
+        let res = { val: arr[i], end: false };
+        i++;
+        arrIterator.index = i;
+        return res;
+      }
+      return { val: undefined, end: true };
+    }
+  };
+  return arrIterator;
+};
+const iterator = createIterator(['One', , 'Two']);
+console.log(iterator.index);  // 0
+console.log(iterator.nextEl()); // { val: 'One', end: false }
+console.log(iterator.index);  // 1
+// A hole in the array - value is undefined
+console.log(iterator.nextEl()); // { val: undefined, end: false }
+console.log(iterator.index);  // 2
+console.log(iterator.nextEl()); // { val: 'Two', end: false }
+console.log(iterator.index);  // 3
+// Iteration has finished - value is undefined, done becomes true
+console.log(iterator.nextEl()); // { val: undefined, end: true }
+console.log(iterator.index);  // 3
+// Subsequent calls to next of a fully processed iterator don't change anything
+console.log(iterator.nextEl()); // { val: undefined, end: true }
+console.log(iterator.index);  // 3
+
+
+// Совсем простой итератор или это лучше в замыкания ??
 function makeLooper(str) {
   let i = 0;
   return function() {
