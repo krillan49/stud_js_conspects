@@ -37,6 +37,21 @@ for(let i = 2, s = Math.sqrt(n); i <= s; i++) {
 }
 
 
+const testCases = [
+    ['1+1=?', 2],
+    ['123*45?=5?088', 6],
+    ['-5?*-1=5?', 0],
+    ['19--45=5?', -1],
+    ['??*??=302?', 5],
+    ['?*11=??', 2],
+    ['??*1=??', 2],
+    ['??+??=??', -1]
+  ];
+for(const [exp, expected] of testCases) {
+  console.log(solveExpression(exp));
+}
+
+
 
 //                                                For in(obj)
 
