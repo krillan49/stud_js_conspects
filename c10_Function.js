@@ -307,7 +307,7 @@ function sum(a, b){
   return a.reduce((pre, cur)=> pre + cur , b);
 }
 function add(...a){
-  return (...b) => b.length ? add(sum(b, sum(a, 0))) : sum(a, 0)
+  return (...b) => b.length ? add(sum(b, sum(a, 0))) : sum(a, 0);
 }
 console.log(add(2,3,4)(5)(2)(8,6,3,5)()) //=> 38
 
