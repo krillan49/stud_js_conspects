@@ -1,3 +1,6 @@
+// vanilla.js -  можно написать в резюмэ как шутку(на самом деле это просто js в виде псевдофрэймворка)
+
+
 // Функция кодирования пробельных и других символов URL-адресов
 'http://www.codewars.com/users/' + encodeURIComponent("aaa "); //=> http://www.codewars.com/users/aaa%20
 
