@@ -70,6 +70,16 @@ function New(func) {
 }
 
 
+// Переопределение(на месте) объекта(массива) от this
+Array.prototype.pereop = function (from, count, ...agrs) {
+  let arr = ['a'];
+  this.length = 0;
+  this.push.apply(this, arr);
+};
+let arr = [0, 1, 2];
+arr.pereop(['a']);
+console.log(arr); // [ 'a' ]
+
 
 
 
