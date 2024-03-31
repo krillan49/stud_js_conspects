@@ -237,6 +237,42 @@ arr.sort((a, b) => {
 console.log(arr) //=> [ 1, 3, 5, 999, 2, 4, 6, 100 ]
 
 
+// Сортировка по неопределенному числу параметров
+function multilevelsort(records, orders) {
+  return records.sort((a, b) => {
+    for (o of orders) {
+      if (a[o.key] != b[o.key]) {
+        if (typeof a[o.key] == 'number') return o.direction == 'ascending' ? a[o.key] - b[o.key] : b[o.key] - a[o.key];
+        else return o.direction == 'ascending' ?  a[o.key].localeCompare(b[o.key]) : b[o.key].localeCompare(a[o.key]);
+      }
+    }
+  });
+};
+var records = [
+  {name:"christian", age:40, job:"developer"},
+  {name:"andrew", age:48, job:"developer"},
+  {name:"elisabeth", age:31, job:"floor manager"},
+  {name:"oscar", age:61, job:"floor manager"},
+  {name:"gisela", age:51, job:"area manager"},
+  {name:"buffy", age:27, job:"trainee"},
+  {name:"carl", age:23, job:"trainee"}
+];
+var order = [
+  {key: "job", direction: "ascending"},
+  {key: "age", direction: "descending"}
+];
+var result = [
+  {name:"gisela",age:51,job:"area manager"},
+  {name:"andrew",age:48,job:"developer"},
+  {name:"christian",age:40,job:"developer"},
+  {name:"oscar",age:61,job:"floor manager"},
+  {name:"elisabeth",age:31,job:"floor manager"},
+  {name:"buffy",age:27,job:"trainee"},
+  {name:"carl",age:23,job:"trainee"}
+];
+console.log(multilevelsort(records,order)); // result
+
+
 
 //                                               Итераторы
 
