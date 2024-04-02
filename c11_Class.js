@@ -4,16 +4,26 @@
 
 class Person {
   // внутри класа не нужно писать ключевое слово function для методов
-  constructor(name='Vasya', age=0, happy=true) { // аналог initialize
-    // Вариант 1. присваиваем аргументы конструктора в переменные экземпляра при помощи this(объект экземпляра ??)
+  constructor(name='Vasya', age=0, happy=true) {
+    // Вариант 1. присваиваем аргументы конструктора в переменные экземпляра при помощи this
     this.name = name;
     this.age = age;
     this.happy = happy;
 
-    // Вариант 2. присваиваем аргументы конструктора(короткая запись) (через хэш ??)
+    // Вариант 2. присваиваем аргументы конструктора через метод объекта
     Object.assign(this, { name, age, happy });
+
+    // Определение метода экземпляра в конструкторе
+    this.getName = () => this.name + ' ' + this.happy;
+
+    // Определение метода класса в конструкторе
+    Person.up = (n) => this.age + n;
+
+    // Создание свойства класса (переменной класса ?)
+    Person.aaa = 'AAA';
   }
-  // похоже класс(или конструктор ??) по умолчанию обладает геттером и сеттером для каждой переменной экземпляра, соотв позволяет к ней обращаться или менять без доп кода вроде отдельных методов или attr_accessor
+  // класс(или конструктор ??) по умолчанию обладает геттером и сеттером для каждой переменной экземпляра, соотв позволяет к ней обращаться или менять без доп кода
+  // Либо конструктор просто создает эти свойства у объекта и для них не нужны геттеры и сеттеры ??
 
   // метод экземпляра
   info() {
@@ -21,99 +31,74 @@ class Person {
   }
 
   some() {
-    this.info(); // метод экземпляра обязательно с this, нельзя просто как в Руби
+    this.info(); // метод экземпляра в другом методе обязательно вызываем от this(объекта экземпляра)
   }
 
   // метод класса(статический)
-  static greetExtraTerrestrials(raceName) {
+  static greetExtra(raceName) {
     return `Welcome to Planet Earth ${raceName}`;
   }
-}
 
-// Создание объекта экземпляра класса
-var kroker = new Person('Kroker', 37, true);
-console.log(kroker.name);   //=> 'Kroker'   // Обращение к свойству экземпляра
-console.log(kroker.info()); //=> 'Я Kroker, мне 37'   // Обращение к методу эуземпляра
-kroker.age = 25;            // Изменение значения свойства экземпляра
-console.log(kroker.age);    //=> 25
+  // Определение переменной класса вне конструктора
+  static number = 0;
 
-// Вызов метода класса(статического)
-console.log(Person.greetExtraTerrestrials('Gigant'));
-
-
-// Определение метода в конструкторе
-class File {
-  constructor(fullName){
-    this.getName = () => fullName;
+  static addNumber() {
+    Person.number++;
+    return this.number;  // переменную класса в теле класса можно писать как через имя класа так и через this
   }
 }
-var myFile = new File("Lorem Ipsum.txt");
-console.log(myFile.getName()) //=> Lorem Ipsum.txt
+
+const kroker = new Person('Kroker', 37, true);       // Создание объекта экземпляра класса
+console.log(kroker.name);                 //=> 'Kroker'            // Обращение к свойству экземпляра
+kroker.age = 25;                                                   // Изменение значения свойства экземпляра
+console.log(kroker.age);                  //=> 25
+console.log(kroker.info());               //=> 'Я Kroker, мне 25'  // Обращение к методу эуземпляра
+console.log(kroker.getName());            //=> 'Kroker true'       // Обращение к методу определенному в конструкторе
+console.log(Person.greetExtra('Gigant')); //=> 'Welcome Gigant'    // Вызов метода класса(статического)
+console.log(Person.up(10));               //=> 35                  // Вызов метода класса определенного в конструкторе
+console.log(Person.aaa);                  //=> 'AAA'               // Вызов свойства класса(переменной класса ?)
+
+console.log(Person.addNumber());                 //=> 1
+console.log(Person.addNumber());                 //=> 2
+console.log(Person.addNumber());                 //=> 3
 
 
 
-//                                               Сеттеры и геттеры
+//                                           Сеттеры и геттеры. get. set
 
-// кастомные
-class Dinglemouse {
-  constructor() {
-    this.name = this.age = this.sex = 0
+// Методы с get или set оттличаются от кастомных тем, что вызываются как свойства без (). Мы какбы оборачиваем свойства в надсвойство от которого будем менять свойство
+class Some {
+  constructor(some, name) {
+    this._some = some; // _ чтобы имя геттера не было таким же как имя свойства
+    this.age = 0;
+    this._name = name; // свойство name должно быть доступно только для чтения. Это означает, что попытки переназначить name должны завершиться неудачей, и оно должно сохранить свое исходное значение
   }
-  setAge(age) {
+  setAge(age) {    // Кастомный сеттер, будет вызываться как метод
     this.age = age
     return this
   }
-  setSex(sex) {
-    this.sex = sex
-    return this
-  }
-  setName(name) {
-    this.name = name
-    return this
-  }
-  hello() {
-    return `Hello. My name is ${this.name}. I am ${this.age}. I am ${this.sex == 'M' ? "male" : "female"}.`
-  }
-}
-
-// методы с get или set. Отличия от кастомных, что вызываются как свойства без (). Мы какбы оборачиваем свойства в методы, от которых их будем вызывать или менять
-class Some {
-  constructor(some, some2) {
-    this._some = some; // _ чтобы имя геттера не было таким же как имя свойства
-    this.some2 = some2;
-  }
-  // Геттеры и сеттеры свойств экземпляра существуют по умолчанию но можно их и написать самому
+  // Сеттреры и геттеры при помощи синтаксиса get или set - будут вызываться как свойства
   get some() {
     return this._some;
   }
   set some(n){
     this._some = n;
   }
+  // Для того чтобы например переменную можно было только читать, содаем только геттер
+  get name() {
+    return this._name;
+  }
 }
-s = new Some(1, 2);
+s = new Some(1, 'Vasya');
 console.log(s.some); //=> 1
 s.some = 3;
 console.log(s.some); //=> 3
-// существующие по умолчанию
-console.log(s.some2); //=> 2
-s.some2 = 5;
-console.log(s.some2); //=> 5
+console.log(s.name); //=> 'Vasya'
+s.name = "Petya";                    // Переназначение завершится неудачей, без ошибки
+console.log(s.name); //=> 'Vasya'
 
-// Для того чтобы например переменную можно было только читать, содаем только геттер
-class File {
-  constructor(fullName) {
-    this._fullName = fullName; // свойство fullName должно быть доступно только для чтения. Это означает, что попытки переназначить fullName новое значение должны завершиться неудачей, и оно должно сохранить свое исходное значение
-  }
-  get fullName() {
-    return this._fullName;
-  }
-}
-let myFile = new File("hello.txt");
-console.log(myFile.fullName); //=> hello.txt
-myFile.fullName = "goodbye.txt"; // Переназначение должно завершиться неудачей
-console.log(myFile.fullName); //=> "hello.txt"
 
-// Удобно использовать сеттеры для свойств зависящих от других свойств, тк по умолчанию они не будут меняться
+// Удобно использовать сеттеры зависящих от других свойств, тк по умолчанию они не будут меняться
 // Можно использовать сеттеры для переназначения свойств от зависимых от них свойств
 class Cuboid {
   constructor(length, width, height) {
@@ -125,18 +110,16 @@ class Cuboid {
   get volume() {
     return this.length * this.width * this.height;
   }
-  set volume(n) { // так задав зависимую величину изменяем от нее свойство(только тут для куба а не кубоида(но можно перенести потом в наследование))
+  set volume(n) { // так задав зависимую величину изменяем от нее свойство(только тут для куба а не кубоида)
     this.length = Math.cbrt(n);
   }
 }
-
 c = new Cuboid(2,3,4);
 console.log(c._volume); //=> 24
-console.log(c.volume); //=> 24
+console.log(c.volume);  //=> 24
 c.length = 5;
-console.log(c._volume); //=> 24 // не исзменилось
-console.log(c.volume); //=> 60
-
+console.log(c._volume); //=> 24 // не исзменилось, тк было определено в конеструкторе сразу и не является методом
+console.log(c.volume);  //=> 60
 
 
 // Добавимть геттеры и сеттеры в существующий класс
@@ -150,7 +133,7 @@ class Person {
     return this.firstName + ' ' + this.lastName;
   }
 }
-// Чтобы добавить новые геттеры и сеттеры в класс нужно использовать синтаксис, тк не получится использоватьпросто 'Person.prototype =' как в функциональном стиле
+// Чтобы добавить новые геттеры и сеттеры в класс нужно использовать синтаксис Object.definePropertiesе
 Object.defineProperties(Person.prototype, {
   name: {
     get: function() {
@@ -163,7 +146,7 @@ Object.defineProperties(Person.prototype, {
     }
   }
 });
-let augustusCole = new Person('Augustus', 'Kola');
+const augustusCole = new Person('Augustus', 'Kola');
 augustusCole.name = 'Cole Train';
 console.log(augustusCole.firstName); //=> 'Cole'
 console.log(augustusCole.lastName);  //=> 'Train'
@@ -194,7 +177,7 @@ class Cat extends Animal {  // Наследует у класса Animal
     super(name, age); // используем функционал базового класса
     this.legs = 4;
     this.species = "cat";
-    this.status = status; // приходится переопределять, тк в базовом класса порядок параметров name, age, legs, species, status, соотв и в супер надо передавать в таком же
+    this.status = status; // приходится переопределять, тк в базовом классе порядок параметров name, age, legs, species, status, соотв и в супер надо передавать в таком же
     this.master = master; // новая переменная только для этого класса
   }
   introduce() { // Просто переопределяем метод
@@ -227,90 +210,41 @@ class Shark extends Animal {
 
 
 
-//                                           Класс как переменная объекта другого класса
-
-function Bee(capacity, hive) {
-  this.capacity = capacity;
-  this.hive = hive; // пчела имеет объект улья в переменной
-}
-
-function Hive() {
-  this.pollen = 100;
-}
-
-Hive.prototype.getPollen = function() {
-  return this.pollen;
-}
-
-Hive.prototype.addPollen = function(pollen) {
-  this.pollen += pollen;
-}
-
-Bee.prototype.unloadPollen = function() {
-  this.hive.addPollen(this.capacity); // используем улей данной пчелы чтоб добавить в него мед
-}
-
-
-
 //                                              Сингелтон-класс
 
 // Синглтон — это шаблон проектирования, который ограничивает создание экземпляра класса одним объектом
 class Singleton {
   constructor() {
-    if (!!Singleton.some) return Singleton.some; // проверяем существует ли уже экземпляр клааса, если да возвращаем его
-    Singleton.some = this; // если не существует то привязываем текущий экземпляр к классу через ??параметр (тут some)
+    if (!!Singleton.some) return Singleton.some; // проверяем существует ли уже экземпляр клааса в переменной класса, если да возвращаем его
+    Singleton.some = this; // если не существует то привязываем текущий экземпляр в переиенную класса
     return this; // без этого также сработало бы, но хорошей практикой является сохранение неизменного возврата из метода.
   }
 }
-let obj1 = new Singleton(), obj2 = new Singleton();
+const obj1 = new Singleton(), obj2 = new Singleton();
 console.log(obj1 === obj2); // => true
 obj1.test = 1;
 console.log(obj2.test); // => 1
 
+
 // применение - счетчик - при вызове Class.getNumber() возвращает сперва 1 потом 2 потом 4 итод
-class Class {
+class Counter {
   constructor() {
-    if (!!Class.some) return Class.some;
-    Class.some = this;
+    if (!!Counter.some) return Counter.some;
+    Counter.some = this;
     this.number = 0;
     return this;
   }
   add(){
-    this.number ? this.number *= 2 : this.number += 1;
+    this.number++;
     return this.number;
   }
   static getNumber() {
-    return new Class().add();
+    return new Counter().add();   // Создание счетчика и вызов метода экземпляра
   }
 }
-
-
-// Тоже что и выше с переменной класса (уже не сингелтон ??)
-class Class {
-  static number = 1
-
-  static getNumber() {
-    const currentVal = Class.number
-    Class.number *= 2
-    return currentVal
-  }
-}
-// тоже
-class Class {
-  static value = 0.5;
-  static getNumber() {
-    this.value = this.value*2
-    return this.value;
-  }
-}
-// тоже
-let count = 0.5;
-
-class Class {
-  static getNumber() {
-    return count *= 2;
-  }
-}
+console.log(Counter.getNumber());                 //=> 1
+console.log(Counter.getNumber());                 //=> 2
+console.log(Counter.getNumber());                 //=> 3
 
 
 
@@ -338,6 +272,10 @@ function makeClass(...vars) {
 const Animal = makeClass("name","species","age","health","weight","color")
 const dog = new Animal('Bob','Dog','5','good','50lb','brown')
 console.log(dog.name) //=> 'Bob'
+
+
+
+
 
 
 

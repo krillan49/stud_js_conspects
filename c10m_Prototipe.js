@@ -246,6 +246,37 @@ console.log(no.fullName); //=> Sanya Xui
 
 
 
+//                                    Класс как переменная объекта другого класса
+
+function Bee(capacity, hive) {
+  this.capacity = capacity;
+  this.hive = hive; // пчела имеет объект улья в переменной
+}
+
+function Hive() {
+  this.pollen = 100;
+}
+
+Hive.prototype.getPollen = function() {
+  return this.pollen;
+}
+
+Hive.prototype.addPollen = function(pollen) {
+  this.pollen += pollen;
+}
+
+Bee.prototype.unloadPollen = function() {
+  this.hive.addPollen(this.capacity); // используем улей данной пчелы чтоб добавить в него мед
+}
+
+const hive = new Hive();
+const bee = new Bee(5, hive);
+console.log(hive.pollen); //=> 100
+bee.unloadPollen();
+console.log(hive.pollen); //=> 105
+
+
+
 //                                            Фабрики, apply
 
 // Хз это трэш или нет ??
