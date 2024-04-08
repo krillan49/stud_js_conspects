@@ -63,6 +63,9 @@ typeof function some() {}  //=> function
 '53' * 1 //=> 53  // number
 '53.6' * 1 //=> 53.6  // number
 
+//
+true * 1 //=> 1
+
 
 
 //                                              Область видимости.

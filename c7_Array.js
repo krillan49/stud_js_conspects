@@ -218,7 +218,7 @@ let a1 = [...arr], a2 = [...arr];
 [{"k": 1, "n": 3}, {"k": 3, "n": 2}].sort((a, b) => b['k'] - a['k']); //=> [ { k: 3, n: 2 }, { k: 1, n: 3 } ]
 
 
-// Сортировка по 2м параметрам через логическое или (ES6)
+// Сортировка по 2м параметрам через логическое или (ES6) тк оно возвращает 0
 let arr = [ { name: 'Dog', legs: 4 }, { name: 'Cat', legs: 4 }, { name: 'Bird', legs: 2 } ];
 arr.sort((a, b) => a.legs - b.legs || a.name.localeCompare(b.name));
 //=> [ { name: 'Bird', legs: 2 }, { name: 'Cat', legs: 4 }, { name: 'Dog', legs: 4 } ]
