@@ -1,23 +1,40 @@
-//                                          Иммитация Operator overload(valueOf)
+//                                       Иммитация Operator overload(valueOf)
 
-// JavaScript не поддерживает перегрузку операторов. Самое близкое, что вы можете сделать, это реализовать toString(который будет вызываться, когда экземпляр должен быть приведен к строке) и valueOf (который будет вызываться для приведения его к числу, например +, при использовании для сложения или во многих случаях, когда используя его для конкатенации, поскольку + пытается выполнить сложение перед конкатенацией), что довольно ограничено.
+// JavaScript не поддерживает перегрузку операторов. Самое близкое к нему что возможно сделать, это реализовать toString и valueOf. Эти примеры не демонстрируют перегрузку операторов, а просто используют преимущества встроенной обработки преобразования JavaScript в примитивы:
+// toString - будет вызываться, когда экземпляр должен быть приведен к строке(тоесть значение возвращаемое этим методе строка).
+// valueOf - будет вызываться для приведения экземпляра к числу, например для +, при использовании для сложения или во многих случаях, когда используя его для конкатенации, поскольку + пытается выполнить сложение перед конкатенацией.
 
-// Однако для людей, которые задаются этим вопросом и хотят получить в результате строку или число (вместо ) Vector2, вот примеры valueOf и toString. Эти примеры не демонстрируют перегрузку операторов, а просто используют преимущества встроенной обработки преобразования JavaScript в примитивы:
+// toString и valueOf работают одинаково, тоесть важно то значение какого типа они возвращают строку или число, ав так математические или строковые операции может осуцществлять любой из них
+
+
 
 //                                                  valueOf
 
-// приведение к примитиву, например, с помощью +:
+// Приведение экземпляра к примитиву с помощью математических операторов:
 function Foo(val) {
   this.val = val;
 }
 Foo.prototype.valueOf = function() {
   return this.val;
 };
-let a = new Foo(1), b = new Foo(2);
-a + b; //=> 3
+const a = new Foo(6), b = new Foo(2);
+// ? Тоесть оператор вызывает метод valueOf к объекту и аргументу ?
+console.log(a + b); //=> 8
+console.log(a - b); //=> 4
+console.log(a * b); //=> 12
+console.log(a / b); //=> 3
+console.log(a % b); //=> 0
+const c = new Foo('6'), d = new Foo('2');
+// Тк примитивы строки выполняет конкатенацию
+console.log(c + d); //=> '62'
+// Но для других операций нет строковых вариантов потому опять математические
+console.log(c - d); //=> 4
+console.log(c * d); //=> 12
+console.log(c / d); //=> 3
+console.log(c % d); //=> 0
 
 
-// Или с ES2015 class:
+// Тоже с ES2015 class:
 class Thing {
   constructor(val) {
     this.val = val;
@@ -30,13 +47,13 @@ const x = new Thing(1), y = new Thing(2);
 x + y; //=> 3
 
 
-// Или просто с объектами, без конструкторов:
-var thingPrototype = {
-  valueOf: function() { return this.val;}
+// Тоже просто с объектами, без конструкторов:
+const someObj = {
+  valueOf: function() { return this.val; }
 };
-var a = Object.create(thingPrototype);
+const a = Object.create(someObj);
 a.val = 1;
-var b = Object.create(thingPrototype);
+const b = Object.create(someObj);
 b.val = 2;
 console.log(a + b); //=> 3
 
@@ -44,15 +61,16 @@ console.log(a + b); //=> 3
 
 //                                                  toString
 
-// В этом примере значение свойства объекта преобразуется val в верхний регистр в ответ на приведение к примитиву, например, с помощью +:
+// В этом примере значение свойства объекта преобразуется val в верхний регистр в ответ на приведение к примитиву, например, с помощью оператора +:
 function Thing(val) {
   this.val = val;
 }
 Thing.prototype.toString = function() {
   return this.val.toUpperCase();
 };
-var a = new Thing("a"), b = new Thing("b");
+const a = new Thing("a"), b = new Thing("b");
 console.log(a + b); //=> "AB"
+console.log(a.repeat(5)); //=> TypeError: a.repeat is not a function // с методами не работает
 
 
 // Или с ES2015 class:
@@ -64,20 +82,17 @@ class Thing {
     return this.val.toUpperCase();
   }
 }
-const a = new Thing("a");
-const b = new Thing("b");
+const a = new Thing("a"), b = new Thing("b");
 console.log(a + b); //=> "AB"
 
 
 // Или просто с объектами, без конструкторов:
-var thingPrototype = {
-  toString: function() {
-    return this.val.toUpperCase();
-  }
+const thingPrototype = {
+  toString: function() { return this.val.toUpperCase(); }
 };
-var a = Object.create(thingPrototype);
+const a = Object.create(thingPrototype);
 a.val = "a";
-var b = Object.create(thingPrototype);
+const b = Object.create(thingPrototype);
 b.val = "b";
 console.log(a + b); //=> "AB"
 
@@ -91,4 +106,4 @@ console.log(a + b); //=> "AB"
 
 
 
-// 
+//

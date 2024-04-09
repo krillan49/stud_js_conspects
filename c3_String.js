@@ -87,7 +87,8 @@ trimRight()
 // replace() - замена подстроки в строке, можно использовать регулярки как параметры определения и функции как параметры замены
 'aaa!!'.replace('!', "");                                   //=> aaa!
 "Your Name".replace(/[^a-z]/g, "");                         //=> ourame
-"this is an example".replace(/\b\w/g, x=>x.toUpperCase())); //=> 'This Is An Example'
+"this is an example".replace(/\b\w/g, x=>x.toUpperCase()); //=> 'This Is An Example'
+"this is an example".replace(/\b\w/g, (x, i) => i);        //=> '0his 5s 8n 11xample' // итерация поддерживает индексы
 
 // replaceAll() - замена всех подстрок в строе. Не принимает регулярки ??
 'vavas'.replaceAll('a', '~'); //=> v~v~s
