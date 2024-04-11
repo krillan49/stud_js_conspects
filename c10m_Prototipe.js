@@ -3,6 +3,28 @@
 // В JS ООП функциональное, на прототипах. Класс это просто сахар синтаксический
 
 
+// Синтаксис для протоитпа метода класса а не экземпляра
+Hex.parse = function(string){
+  //...
+}
+
+// Object.freeze - запрещает изменять свойства объекта (как только гетткры)
+function OnceNamedOne(first, last) {
+    this.firstName = first;
+    this.lastName = last;
+    this.fullName = this.firstName + ' ' + this.lastName;
+    Object.freeze(this);
+}
+// тлже самое только через writable:false
+function OnceNamedOne(first, last) {
+  Object.defineProperties(this, {
+    'firstName': {value:first, writable:false},
+    'lastName': {value:last, writable:false},
+    'fullName': {value:first + ' ' + last, writable:false}
+  });
+}
+
+
 
 //                                       Функция-конструктор. Оператор new.
 
