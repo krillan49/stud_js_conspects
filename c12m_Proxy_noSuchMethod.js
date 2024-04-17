@@ -1,7 +1,10 @@
-//                                         Proxy. __noSuchMethod__
+//                                                 Proxy
 
-// Аналог рубишного method_missing
 
+
+//                                             method_missing
+
+// Аналог рубишного method_missing в функциональном стиле
 function enableNoSuchMethod(obj) {
   return new Proxy(obj, {
     get(target, p) {
@@ -15,27 +18,23 @@ function enableNoSuchMethod(obj) {
     }
   });
 }
-
-// Example usage:
+// Используем для объектов нашего класса Dummy
 function Dummy() {
   this.ownProp1 = "value1";
   return enableNoSuchMethod(this);
 }
-
-Dummy.prototype.__noSuchMethod__ = function(name, args) {
+// __noSuchMethod__   - название можно любое (? но правильнее с подчеркиваниями ?)
+Dummy.prototype.__noSuchMethod__ = function(name, args) {   // typeof name //=> string
   return `No such method ${name} called with ${args}`;
 };
-
-var instance = new Dummy();
+const instance = new Dummy();
 console.log(instance.ownProp1);
-console.log(instance.someName(1, 2)); //=> No such method someName called with 1,2
-console.log(instance.xyz(3, 4)); //=> No such method xyz called with 3,4
+console.log(instance.someName(1, 2));         //=> No such method someName called with 1,2
+console.log(instance.xyz(3, 4));              //=> No such method xyz called with 3,4
 console.log(instance.doesNotExist("a", "b")); //=> No such method doesNotExist called with a,b
 
 
-
-//                                            С синтаксисом класса
-
+// Аналог рубишного method_missing с синтаксисом класса
 class Character {
   constructor(name) {
     this.name = name;
@@ -44,23 +43,22 @@ class Character {
       get(target, p) {
         if (p in target) {
           return target[p];
-        } else if (typeof target.__noSuchMethod__ == "function") {
+        } else if (typeof target.methodMissing == "function") {
           return function(...args) {
-            return target.__noSuchMethod__.call(target, p, args);
+            return target.methodMissing.call(target, p, args);
           };
         }
       }
     });
   }
-  // наш носачметод напишет так(красивее) но можно было и __noSuchMethod__ = function(name, args)
-  __noSuchMethod__(method, args) { // typeof method //=> string
+  // так красивее но можно было и methodMissing = function(name, args)
+  methodMissing(method, args) {  // typeof method //=> string
     return `Method: ${method}; args: ${args}`;
   };
 }
-
-var instance = new Character('vasya'); // присваиваится объект прокси
-console.log(instance.someName(1, 2)); //=> Method: someName; args: 1,2
-console.log(instance.xyz(3, 4)); //=> Method: xyz; args: 3,4
+const instance = new Character('vasya'); // присваиваится объект прокси
+console.log(instance.someName(1, 2));         //=> Method: someName; args: 1,2
+console.log(instance.xyz(3, 4));              //=> Method: xyz; args: 3,4
 console.log(instance.doesNotExist("a", "b")); //=> Method: doesNotExist; args: a,b
 
 

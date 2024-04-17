@@ -161,6 +161,22 @@ console.log(fib()); //=> 1
 console.log(fib()); //=> 2
 
 
+// Генератор получающий параметр из next()
+function* generator(n=0) {
+  let count = 1;
+  while (true) {
+    let res = yield count; // параметр возвращается тут
+    res ? count = res : count++; // тут если параметр передпн, присвоим его новым значением счетчика(но можем прибавить или еще че)
+  }
+  return count;
+}
+gen.next().value //=> 1
+gen.next().value //=> 2
+gen.next().value //=> 3
+// передаем параметр
+gen.next(10).value //=> 10
+
+
 
 
 

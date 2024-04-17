@@ -15,7 +15,7 @@ function OnceNamedOne(first, last) {
     this.fullName = this.firstName + ' ' + this.lastName;
     Object.freeze(this);
 }
-// тлже самое только через writable:false
+// тоже самое только через writable:false
 function OnceNamedOne(first, last) {
   Object.defineProperties(this, {
     'firstName': {value:first, writable:false},
