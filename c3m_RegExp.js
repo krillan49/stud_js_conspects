@@ -72,6 +72,7 @@ str.replace(/Hello/g,"I love")     //=> "I love World! I love CodeWars! "     //
 // Принимает стрелочную функцию 2м параметром для изменения элементов замены
 "my name is John".replace(/\b./g, x => x.toUpperCase()); //=> "My Name Is John"
 "this is an example".replace(/\b\w/g, (x, i) => i);      //=> '0his 5s 8n 11xample' // итерация поддерживает индексы
+'abc'.replace(/(a)(b)(c)/, (a,b,c) => c+'0'+a+'1'+b+'2') //=> 'b0abc1a2'  // элементы группировки в отдельных переменных
 
 
 // 3. split() - делит строку по указанной подстроке. По умолчанию используется опция «g», те не обязательно ее указывать.

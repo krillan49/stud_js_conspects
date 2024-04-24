@@ -41,7 +41,7 @@ console.log(arr); // [10, 20, 35, 25, 15, 10]
 
 // 1. Перебор ключей и значений объекта
 let obj = {item1:"This", item2:"is", item3:"an", item4:"example"};
-for (let key in obj){ // перебираем ключи хэша
+for (let key in obj){ // перебираем ключи объекта
   console.log(key); //=> item1 item2 item3 item4
   console.log(obj[key]); //=> This is an example  // перебираем значения по ключам
 }

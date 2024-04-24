@@ -39,6 +39,13 @@ console.log(a);  //=> [ 0, 0, 0, 0 ]
 
 [75,,,85]; //=> [ 75, <2 empty items>, 85 ]
 
+// Удалить только пустые элементы, но оставить undefined
+let arr = [75,,undefined,[],,85]; //=> [ 75, <2 empty items>, 85 ]
+console.log(arr); //=> [ 75, <1 empty item>, undefined, [], <1 empty item>, 85 ]
+console.log(arr.flat(0)); //=> [ 75, undefined, [], 85 ]
+console.log(arr.filter(_ => true)); //=> [ 75, undefined, [], 85 ]
+
+
 console.log([...5678+[]]); //=> [ '5', '6', '7', '8' ]
 
 // Создание нового массива из чисел от 0 и до чегото
@@ -393,6 +400,7 @@ console.log(a, b) //=> 6 9  // обход прерывается когда some
 [1, 2, 3, 4, 5].reduce((sum, n) => sum + n, 0);     //=> 15
 [1, 2, 3, 4, 5].reduce((sum, n) => sum + n);        //=> 15       // начальное значение не обязательно(по умолчанию первый элемент)
 [1, 2, 3, 4, 5].reduce((sum, n) => sum + n, "");    //=> '12345'  // начальное значение строка приводит все к строке
+a.reduce((sum, n) => sum + 1 / n, 0);
 [1, 2, 3, 4, 5].reduce((multi, n) => multi * n, 1); //=> 120
 [[1, 2], [3, 4]].reduce((multi, [b, c]) => multi * (b + c), 1);   // => 21
 [1, 2, 3, 4, 5].reduce((count, n) => count + (n % 2 ? 1 : 0), 0); //=> 3  // считаем четные

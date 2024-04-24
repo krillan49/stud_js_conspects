@@ -7,6 +7,9 @@
 // перевод например строки в бигинт
 BigInt(a)
 
+// перевод в формат денег ??
+console.log((12345.6789).toLocaleString()); // 12 345,679
+
 // eval()
 console.log(eval('2 + 2')); //=> 4
 console.log(eval(new String('2 + 2'))); //=> '2 + 2'
@@ -49,6 +52,11 @@ Foo.prototype.bar = function (x) {return x+x;};
 foo.bar(21);            // == 42
 
 Array.isArray(e)
+
+// Вывести класс объекта
+console.log({}.toString.call(null)); //=> '[object Null]'
+console.log({}.toString.call([1, 2, 3])); //=> '[object Array]'
+console.log({}.toString.call(new Date())); //=> '[object Date]'
 
 
 
