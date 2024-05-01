@@ -10,10 +10,10 @@ Hex.parse = function(string){
 
 // Object.freeze - запрещает изменять свойства объекта (как только гетткры)
 function OnceNamedOne(first, last) {
-    this.firstName = first;
-    this.lastName = last;
-    this.fullName = this.firstName + ' ' + this.lastName;
-    Object.freeze(this);
+  this.firstName = first;
+  this.lastName = last;
+  this.fullName = this.firstName + ' ' + this.lastName;
+  Object.freeze(this);
 }
 // тоже самое только через writable:false
 function OnceNamedOne(first, last) {

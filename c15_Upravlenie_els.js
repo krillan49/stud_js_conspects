@@ -2,40 +2,45 @@
 
 // Для управления HTML объектами можно обращаться к ним через айди, класс или имя тега
 
+// document - глобальный объект JS, при помощи которого можно управлять DOM-структурой страницы(через его методы)
+
 
 
 //                                         1. Обращение через id
 
-var text = document.getElementById('text');
-// document - глобальный объект JS, при помощи которого можно управлять DOM-структурой страницы(через его методы)
-// getElementById('text') - функкция объекта document, возвращающая объект тега по его id
-// Далее уже можно обращаться к свойствам объекта тега через методы
-console.log(text.id); //=> 'text' // выведем значение атрибута id тега
-console.log(text.title); //=> 'Some text' // выведем значение атрибута title тега
+let pTag = document.getElementById('text');
+// getElementById('text') - метод объекта document, возвращающая объект тега по его id заданный в виде строки в параметр('text')
+// Далее можно обращаться к свойствам объекта тега через методы
+console.log(pTag.id);    //=> 'text'      // выведем значение атрибута id тега
+console.log(pTag.title); //=> 'Some text' // выведем значение атрибута title тега
 
 
 // меняем значение атрибута title
-text.title = 'New text';
-console.log(text.title); //=> 'New text'
+pTag.title = 'New text';
+console.log(pTag.title); //=> 'New text'
 
 // меняем стили
-text.style.color = 'magenta'; // обращаемся к атрибуту stile и через точку к имени стиля
-text.style.backgroundColor = 'yellow'; // имя стиля пишем в камелкейс вместо кебаба
+pTag.style.color = 'magenta';          // обращаемся к атрибуту stile и через точку к имени стиля
+pTag.style.backgroundColor = 'yellow'; // имя стиля пишем в камелкейс вместо кебаба
 
 // запишем внутрь тела тега
-text.innerHTML = "some<i>text</i>"; // можно писать не только текст но и теги
+pTag.innerHTML = "some<i>text</i>"; // можно писать не только текст но и теги
 
 
 // если нужно обратиться к одному свойству переменную создавать не обязательно
-console.log(document.getElementById('text').style); //=> вернет все стили и их значения(даже не прописанные)
+console.log(document.getElementById('text').style);     //=> вернет все стили и их значения(в том числе установленые по умолчанию)
 document.getElementById('text').style.fontSize = '2rem'
 
 
-// Пример изменения цвета абзаца нажатием разных кнопок
+// Пример изменения цвета текста в абзаце в зависимости от нажатия разных кнопок
 function changeColor(newColor) {
-  var but = document.getElementById('but');
+  let but = document.getElementById('but');
   but.style.color = newColor;
 }
+
+
+
+// ??? Странная фигня, если далее меняем тип переменной с var arr на let arr то перестает работать то что выше ???
 
 
 
@@ -44,7 +49,7 @@ function changeColor(newColor) {
 // В этом случае будет возвращен не один тег а массив содержащий объекты тегов
 var arr = document.getElementsByTagName('span'); // Elements - во множественном числе
 // тк это массив объектов то для обращения к каждому стот использовать цикл
-for (var i = 0; i < arr.length; i++){
+for (let i = 0; i < arr.length; i++){
   console.log(arr[i].innerHTML);  // смотрим значения тегов
 }
 

@@ -9,21 +9,22 @@
 
 <body>
 
-  <!-- Обращения к форме через this или по id  -->
-  <form id="main-form" onsubmit="return checkForm(this)" method="post">
+  <!--                             Обращения к форме через this или по id  -->
+
+  <form onsubmit="return checkForm(this)" method="post" style="background-color:lightblue; border:2px solid blue">
     <!-- onsubmit - обработчик события который срабатывает, когда мы нажимает на кнопку находящуюся внутри формы с типом submit. Можно было и повесить onclick на саму кнопку, но данный вариант корректнее -->
     <!-- return checkForm(this) - мы возвращаем значение выполнения функции. Если вернется true то страница перезагрузится и данные отправятся на сервер, а если false то не перезагрузится и не отправятся -->
     <!-- this - будем передавать в функцию саму форму -->
     <!-- method="post" - пишем только для того тут чтоб данные формы не писались внутри URL страницы(тк по умолчанию get) в виде file:///E:/doc/js_conspects/c13_Form.html?name=&pass=&repass=&submit=Готово -->
 
     <label for="username">Имя:</label>
-    <input type="text" name="username" id="username"><br><br>
+    <input type="text" name="username" id="user_name"><br><br>
 
     <label for="pass">Пароль:</label>
-    <input type="password" name="pass" id="pass"><br><br>
+    <input type="password" name="pass" id="pass_"><br><br>
 
     <label for="repass">Проверка пароля:</label>
-    <input type="password" name="repass" id="repass"><br><br>
+    <input type="password" name="repass" id="repass_"><br><br>
 
     <span>Пол:</span>
     <input type="radio" name="state" id="male" value="Мужской">
@@ -31,23 +32,51 @@
     <input type="radio" name="state" id="female" value="Женский">
     <label for="female">Женский</label><br><br>
 
-    <div id="error" style="color:red"></div> <!-- Для вывода сообщений об ошибках валидации -->
+    <div id="error" style="color:red;background-color:pink"></div> <!-- Для вывода сообщений об ошибках валидации -->
 
     <input type="submit" name="submit" value="Готово">
 
   </form>
 
 
-
-  <!-- Обращеник к форме через все формы на странице -->
   <br><br>
-  <form name="my-form" onsubmit="return valForm()" method="post" >
+  <!--                           Обращеник к форме по id с обработчиком события -->
+
+  <form id="main-form" method="post" style="background-color:gray; border:2px solid magenta; color:white">
+    <!-- onsubmit - тут больше не нужен тк повесим обработчик события на кнопку в JS-фаиле -->
+
+    <label for="username">Имя:</label>
+    <input type="text" name="username" id="user_name"><br><br>
+
+    <label for="pass">Пароль:</label>
+    <input type="password" name="pass" id="pass_"><br><br>
+
+    <label for="repass">Проверка пароля:</label>
+    <input type="password" name="repass" id="repass_"><br><br>
+
+    <span>Пол:</span>
+    <input type="radio" name="state" id="male" value="Мужской">
+    <label for="male">Мужской</label>
+    <input type="radio" name="state" id="female" value="Женский">
+    <label for="female">Женский</label><br><br>
+
+    <div id="error2" style="color:red;background-color:pink"></div>
+
+    <input type="submit" name="submit" value="Готово">
+
+  </form>
+
+
+  <br><br>
+  <!--                           Обращеник к форме через все формы на странице -->
+
+  <form name="my-form" onsubmit="return valForm()" method="post" style="background-color:lightgreen; border:2px solid green">
     <input type="text" name="user"><br>
     <input type="submit" value="Готово">
   </form>
 
 
 
-  <script type="text/javascript" src="c13_Form.js"></script>
+  <script type="text/javascript" src="c16_Form.js"></script>
 </body>
 </html>
