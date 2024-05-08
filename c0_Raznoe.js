@@ -1,6 +1,18 @@
 // vanilla.js -  можно написать в резюмэ как шутку(на самом деле это просто js в виде псевдофрэймворка)
 
 
+// Аналог & в руби но только для свлйств объекта (?)
+// https://habr.com/ru/companies/ruvds/articles/353446/ - еще похожие новые операторы
+const data = {}
+console.log(data.user?.address?.street); // undefined
+
+// Оператор нулевого слияния (??) — это логический оператор, возвращающий значение правого операнда, если значение левого операнда содержит null или undefined, в противном случае возвращается значение левого операнда.
+const foo = null ?? 'default string';
+console.log(foo); // Expected output: "default string"
+const baz = 0 ?? 42;
+console.log(baz); // Expected output: 0
+
+
 // Функция кодирования пробельных и других символов URL-адресов
 'http://www.codewars.com/users/' + encodeURIComponent("aaa "); //=> http://www.codewars.com/users/aaa%20
 

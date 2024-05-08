@@ -91,6 +91,8 @@ Number.isSafeInteger(n) // проверяет доступно ли это це�
 [111.11.toFixed(1), 111.11.toExponential(1), 111.11.toPrecision(1)] //=> [ '111.1', '1.1e+2', '1e+2' ]
 [111.11.toFixed(6), 111.11.toExponential(6), 111.11.toPrecision(6)] //=> [ '111.110000', '1.111100e+2', '111.110' ]
 
+console.log((5).toFixed(2)); // 5.00
+
 
 
 
