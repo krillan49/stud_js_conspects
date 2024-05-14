@@ -1,3 +1,5 @@
+//                                           Логические операторы
+
 // Можно сравнивать операторами == != > < >= <=  и мб еще чемто
 // Логическое и - &&; логическое или - ||
 
@@ -91,6 +93,22 @@ console.log(res); //=> 82
 
 // Несколько действий
 let son = y > z && z < 5 ? 'third' : y > z ? 'second' : 'first';
+
+
+
+//                                               Новые операторы
+
+// Аналог & в руби но только для свлйств объекта (?)
+// https://habr.com/ru/companies/ruvds/articles/353446/ - еще похожие новые операторы
+const data = {}
+console.log(data.user?.address?.street); // undefined
+
+
+// Оператор нулевого слияния (??) — это логический оператор, возвращающий значение правого операнда, если значение левого операнда содержит null или undefined, в противном случае возвращается значение левого операнда.
+const foo = null ?? 'default string';
+console.log(foo); // Expected output: "default string"
+const baz = 0 ?? 42;
+console.log(baz); // Expected output: 0
 
 
 

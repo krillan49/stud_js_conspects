@@ -53,6 +53,23 @@ typeof new Object()        //=> object
 typeof function some() {}  //=> function
 
 
+// Определение типов и классов
+function Foo() {}
+typeof Foo;             // == "function"
+let foo = new Foo();
+typeof foo;             // == "object"
+foo instanceof Foo;     // == true
+foo.constructor.name;   // == "Foo"
+Foo.name                // == "Foo"
+Foo.prototype.isPrototypeOf(foo);   // == true
+
+
+// Вывести класс объекта
+console.log({}.toString.call(null)); //=> '[object Null]'
+console.log({}.toString.call([1, 2, 3])); //=> '[object Array]'
+console.log({}.toString.call(new Date())); //=> '[object Date]'
+
+
 
 //                                         Изменить тип данных
 
