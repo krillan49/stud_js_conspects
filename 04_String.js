@@ -40,6 +40,7 @@ str = str.slice(0, i) + str.slice(i + 1);
 "Your Name".includes('english');    //=> false         // Содержит ли строка данную подстроку
 "My".concat("name","is","John");    //=> MynameisJohn  // сложение строк альтер вместо +
 'Aa'.repeat(5);                     //=> "AaAaAaAaAa"
+'aa'.padStart(8, '0')               //=> "000000aa"    // добавляет в начало 2й аргумент в колличестве 2й аргумент - длинна строки
 " \n  \n\n\na  b  c\t\t\t ".trim(); //=> 'a  b  c'     // удаляет все пробельные элементы в начале и конце
 trimRight()
 
@@ -155,6 +156,10 @@ String.fromCharCode(99, 111, 120); //=> 'cox'
 String.fromCharCode('a'.charCodeAt() + 1); //=> 'b'
 
 
+
+//                                                  Разное
+
+[...'abc'] //=> ['a', 'b', 'c']
 
 
 

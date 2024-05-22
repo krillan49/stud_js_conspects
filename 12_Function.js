@@ -254,6 +254,25 @@ logOnce("bar"); // no effect
 
 
 
+//                              Кастомные стрелочные функции-аргументы для встроенных функций
+
+// Тоесть можно пихать любую функцию аргументом во встроенные функции если число и тип параметров подойдут
+
+const filterUsersByField = (field, value) => (user) => user[field] === value;  // возвращает функцию-фргумент фильтр по любому полю
+const sumUsersByField = (field) => (sum, user) => sum + user[field]; // возвращает функцию аргумент суммирующую по любому полю
+function calcUsersSumFieldByField(users, fieldForFilter, valueForFilter, fieldForSum) {
+  return users.filter(filterUsersByField(fieldForFilter, valueForFilter))
+              .reduce(sumUsersByField(fieldForSum), 0);
+}
+const users = [
+  {money:1000, age:20, country:'RU'}, {money:5000, age:50, country:'RU'},
+  {money:100, age:100, country:'UA'}, {money:300, age:200, country:'UA'}
+]
+console.log(calcUsersSumFieldByField(users, 'country', 'RU', 'age'));  //=> 70
+console.log(calcUsersSumFieldByField(users, 'country', 'UA', 'money')); //=> 400
+
+
+
 //                               func(arg1)(arg2) Цепной вызов аргуметов (цепочке прототипов)
 
 // Тоесть мы должны после обработки аргумента вернуть функцию которая объединится со скобкой со след аргументами:
