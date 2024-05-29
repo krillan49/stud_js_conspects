@@ -25,6 +25,14 @@ function OnceNamedOne(first, last) {
 }
 
 
+// Назначение прототипа из обычной функции
+function reverse() {
+  return this.split('').reverse().join('');
+}
+String.prototype.reverse = reverse;
+console.log("String".reverse()); //=> "gnirtS"
+
+
 
 //                                       Функция-конструктор. Оператор new.
 
