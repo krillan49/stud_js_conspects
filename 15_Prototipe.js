@@ -1,5 +1,16 @@
 //                                        ООП. Конструкторы и прототипы.
 
+// Присвоение в прототип по имени функции
+function myMap(callback) {
+  const res = [];
+  for (let i = 0; i < this.length; i++) { res.push(callback(this[i])) }
+  return res;
+}
+Array.prototype.myMap = myMap;
+[1,2,3].myMap(n => n*2) //=> [ 2, 4, 6 ]
+
+
+
 // В JS ООП функциональное, на прототипах. Класс это просто сахар синтаксический
 
 
