@@ -8,7 +8,11 @@ console.log(some.someField); //=> 123
 
 // тоесть length возвращает колличество аргументов у функции
 const sum = (a, b, c) => a + b + c;
-console.log(sum.length); //=> 3  
+console.log(sum.length); //=> 3
+
+
+// запись переданногомассива по переменным сразу
+function to1D(x, y, [w,h]) {}
 
 
 
