@@ -49,6 +49,14 @@ function summa(a, b) {
 summa(5, 7);
 
 
+//
+function notEmpty(item) {
+	return item !== undefined && item !== null;
+}
+arr.filter(notEmpty);   // возвращаем саму функцию
+arr.filter(item => notEmpty(item));   // возвращаем результат функции
+
+
 
 //                                        Посмотреть код функции по ее оператору
 
