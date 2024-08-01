@@ -71,7 +71,7 @@ console.log({}.toString.call(new Date())); //=> '[object Date]'
 
 
 
-//                                         Изменить тип данных
+//                                            Изменить тип данных
 
 // Оператор + со строкой преобразует и другое слогаемое в строку(тут из Integer)
 5 + '5' //=> '55'
@@ -82,6 +82,9 @@ console.log({}.toString.call(new Date())); //=> '[object Date]'
 
 //
 true * 1 //=> 1
+
+// перевод в формат денег ??
+console.log((12345.6789).toLocaleString()); // 12 345,679
 
 
 
