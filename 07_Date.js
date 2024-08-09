@@ -31,7 +31,9 @@ date.setMinutes(23); // устанавливаем минуты(возвраща
 console.log('время: ' + date.getHours() + ':' + date.getMinutes()); //=> 'время: 23:23'
 
 
-// Дата из числа дней(последний параметр)
+
+//                                         Форматирование даты
+
 new Date(2021, 0, 222).toLocaleDateString(`en`, {month: 'long', day: 'numeric'}) //=> August 10
 
 
