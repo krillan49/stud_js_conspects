@@ -15,18 +15,18 @@ var num;
 console.log(num); //=> undefined
 // создание переменной со значением undefined для последующей инициальзации и использования, называется поднятием
 
-num = 5; // присваиваем в переменную значение
+num = 5;     // присваиваем в переменную значение
 num = 'aaa'; // Переопределение переменной
 
-var num2 = 7; // создаем и присваиваем значение сразу
+// создаем и присваиваем значение сразу
+var num2 = 7;
 
-var a = 2, b = 10; // содание нескольких переменных в 1 строку
-
+// содание нескольких переменных в 1 строку
+var a = 2, b = 10;
 
 // можно называть с большой буквы(имена переменных чувствительны к регистру)
 var Num = 'aaa';
 console.log(Num); //=> aaa
-
 
 // Замена значений переменных друг на друга
 var a = 1, b = 2;
@@ -36,7 +36,7 @@ console.log(b); //=> 1
 
 
 
-//                                        Определить тип данных typeof
+//                                   typeof и instanceof. Определить тип данных
 
 // целые(Integer)(максимум 53 бита), с плавающей точкой(Float), строки(String), true и false(Boolean) итд
 
@@ -55,19 +55,19 @@ typeof function some() {}  //=> function
 
 // Определение типов и классов
 function Foo() {}
-typeof Foo;             // == "function"
+typeof Foo;                         // == "function"
 let foo = new Foo();
-typeof foo;             // == "object"
-foo instanceof Foo;     // == true
-foo.constructor.name;   // == "Foo"
-Foo.name                // == "Foo"
+typeof foo;                         // == "object"
+foo instanceof Foo;                 // == true
+foo.constructor.name;               // == "Foo"
+Foo.name                            // == "Foo"
 Foo.prototype.isPrototypeOf(foo);   // == true
 
 
-// Вывести класс объекта
-console.log({}.toString.call(null)); //=> '[object Null]'
-console.log({}.toString.call([1, 2, 3])); //=> '[object Array]'
-console.log({}.toString.call(new Date())); //=> '[object Date]'
+// {}.toString.call - Вывести класс объекта
+{}.toString.call(null);       //=> '[object Null]'
+{}.toString.call([1, 2, 3]);  //=> '[object Array]'
+{}.toString.call(new Date()); //=> '[object Date]'
 
 
 
@@ -77,14 +77,18 @@ console.log({}.toString.call(new Date())); //=> '[object Date]'
 5 + '5' //=> '55'
 
 // Альтернативный перевод строки в число. чтобы преобразовать String в Int в JS. ('523' * 1 == 523)
-'53' * 1 //=> 53  // number
+'53' * 1   //=> 53  // number
 '53.6' * 1 //=> 53.6  // number
 
-//
+// ??
 true * 1 //=> 1
 
+
+
+//                                            Форматирование данных
+
 // перевод в формат денег ??
-console.log((12345.6789).toLocaleString()); // 12 345,679
+console.log((12345.6789).toLocaleString()); //=> '12 345,679'
 
 
 
@@ -93,42 +97,43 @@ console.log((12345.6789).toLocaleString()); // 12 345,679
 // В Javascript, имеются 2 типа областей видимости — глобальная область видимости, и область видимости функции(локальная). Глобальная переменная видна повсюду и с ней можно работать отовсюду в документе. Если объявление переменной происходит внутри области функции, переменная определяется только в локальной области видимости этой функции.
 
 var num = 10; // Данная переменная будет глобальной, тк определена вне функциями
-
 function info() {
   var num2 = 5; // Данная переменная будет локальной, тк определена в теле функции
-  console.log(num); // глобальная переменная работает и внутри функций
-  console.log(num2); // локальная переменная работает только внутри функции в которой определена
+  console.log(num);  //=> 10   // глобальная переменная работает и внутри функций
+  console.log(num2); //=> 5    // локальная переменная работает только внутри функции в которой определена
 }
 info();
-console.log(num2); // Uncaught ReferenceError: num2 is not defined
+console.log(num2); //=> Uncaught ReferenceError: num2 is not defined
 
 
-// Фича
+// Фича ???
 var num = 10;
 function info() {
-  var num = 5;      // Присваиваем в переменную с тем же именем
-  console.log(num); // тут сработает для локальной
+  num = 2;           // это не сработает когда в области функции назначается переменная с тем же именем
+  console.log(num);  //=> 2  // тут меняет, но далее видимо откатывает изменение ???
+  var num = 5;       // В области функции можем присвоитиь в переменную с тем же именем и не будет вызвано исключения
 	return num;
 }
-info(); // тут сработает для локальной
-console.log(num); // тут сработает для глобальной
+console.log(info()); //=> 5   // тут сработает для локальной
+console.log(num);    //=> 10  // тут сработает для глобальной
 
 
 
-//                                          Отличия var, let и const
+//                                                var, let и const
 
 // https://habr.com/ru/articles/438880/
 
+// var, let или const? Самое распространенное мнение - это использовать всегда const, пока неизвестно будет ли переменная изменяться. Используя const вы даете понять себе и другим разработчикам, что эта переменная не должна изменяться. Если её потребуется изменить (например в цикле for), просто используйте let. var используется редко
 
 // var:
-//   ограничена областью видимости функции (переменные var объявленные внутри For, доступны и за его пределами, они входят в область видимости функции и вы можете получить к ним доступ вне блока)
+//   ограничена областью видимости функции (переменные var объявленные внутри For, доступны и за его пределами, они входят в область видимости функции и можно получить к ним доступ вне блока)
 //   undefined  - если обратиться к ней без её объявления.
 
 // let:
 //   ограничена областью видимости блока
 //   ReferenceError - если обратиться к ней без её объявления.
 
-// const:
+// const (это не константа, а именно read-only переменная):
 //   ограничена областью видимости блока
 //   ReferenceError - если обратиться к ней без её объявления.
 //   не может быть перезаписана
@@ -136,26 +141,24 @@ console.log(num); // тут сработает для глобальной
 
 // Ключевое отличие между var и let это то, что let помимо глобальной области видимости и области видимости функции позволяет определять переменные в области видимости блока. Переменная let созданная в блоке(области окруженное фигурными скобками {}, например цикл for или оператор if.) доступна только внутри этого “блока”.
 function discountPrices(prices) {
-  for (let n = 0; n < prices; n++) {
-    let perLet = 'perLet';
+  for (var k = 0; k < prices; k++) {
     var perVar = 'perVar';
   }
-
-  for (var k = 0; k < prices; k++) {}
-
+  for (let n = 0; n < prices; n++) {
+    let perLet = 'perLet';
+  }
+  console.log(k)      //=> 1
   console.log(perVar) //=> 'perVar'
-  console.log(perLet) //=> ReferenceError: perLet is not defined   // говорит нам о том, что переменная, объявленная при помощи let, ограничена областью видимости блока, а не функции
-  console.log(n) //=> ReferenceError: n is not defined
-  console.log(k) //=> 1
+  console.log(n)      //=> ReferenceError: n is not defined
+  console.log(perLet) //=> ReferenceError: perLet is not defined
 }
 discountPrices(1)
 
 
-// const — это не константа, а именно read-only переменная
 // const почти такая же как и let. Но если однажды присвоили ей значение, уже нельзя его изменить на другое.
 let name = 'Tyler'
 const handle = 'tylermcginnis'
-name = 'Tyler McGinnis' // OK
+name = 'Tyler McGinnis'   // OK
 handle = '@tylermcginnis' // NOT OK: TypeError: Assignment to constant variable.
 
 // Но изменения свойства объекта не является его перезаписью
@@ -163,10 +166,7 @@ const person = {
   name: 'Kim Kardashian'
 }
 person.name = 'Kim Kardashian West' // OK
-person = {} // NOT OK: Assignment to constant variable.
-
-
-// var, let или const? Самое распространенное мнение - это использовать всегда const, пока вы не знаете будет ли переменная изменяться. Причина этого в том, что используя const вы даете понять себе и другим разработчикам, что эта переменная не должна изменяться. Если её потребуется изменить (например в цикле for), просто используйте let. var используется редко
+person = {}                         // NOT OK: Assignment to constant variable.
 
 
 
