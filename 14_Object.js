@@ -76,6 +76,20 @@ person.what(9);       //=> 9009
 
 
 
+//                                       Геттеры и сеттеры для конкретного объекта
+const person = {
+  firstName: "Jane",
+  lastName: "Doe",
+  get fullName() {
+    return this.firstName + ' ' + this.lastName;
+  },
+  set fullName(newName) {
+    [this.firstName, this.lastName] = newName.split(' ');
+  }
+}
+
+
+
 //                                     Круговой(ссылающийся сам на себя объект)
 
 const circular = { value: "Hello World" }
