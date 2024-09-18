@@ -209,6 +209,26 @@ class Shark extends Animal {
 }
 
 
+// ВТФ ???     https://www.codewars.com/kata/652a19cd7e92f356f437d059
+class Class {
+  static #foo = 42;
+
+  static get foo() {
+    return this.#foo;
+  }
+}
+// Я написал класс Classс закрытым staticсвойством fooи геттером для его извлечения:
+Class.foo;
+// Однако когда я создаю класс Subclass, который наследует от Class, код ломается:
+class Subclass extends Class {}
+Subclass.foo; // Error !
+// Можете ли вы исправить код?
+// Измените Class так, чтобы это Subclass.fooработало правильно. Это также должно работать для любого уровня наследования от Class, например с:
+class Deepclass extends Subclass {}
+Deepclass.foo; // should return 42
+
+
+
 
 //                                              Сингелтон-класс
 
