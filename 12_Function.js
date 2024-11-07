@@ -49,6 +49,9 @@ console.log(some.someField); //=> 123
 const sum = (a, b, c) => a + b + c;
 console.log(sum.length); //=> 3
 
+// name - встроеное свойство возвращает название функции в виде строки
+f.name
+
 
 
 //                                  Посмотреть код функции по ее оператору
