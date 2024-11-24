@@ -1,78 +1,46 @@
 //                                        ООП. Конструкторы и прототипы.
 
-// Присвоение в прототип по имени функции. При такой записи некорректо работала стрелочная функция
-function myMap(callback) {
-  const res = [];
-  for (let i = 0; i < this.length; i++) { res.push(callback(this[i])) }
-  return res;
-}
-Array.prototype.myMap = myMap;
-[1,2,3].myMap(n => n*2) //=> [ 2, 4, 6 ]
-
-
-
 // В JS ООП функциональное, на прототипах. Класс это просто сахар синтаксический
 
 
-// Синтаксис для протоитпа метода класса а не экземпляра
-Hex.parse = function(string){
-  //...
-}
 
-// Object.freeze - запрещает изменять свойства объекта (как только гетткры)
-function OnceNamedOne(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-  this.fullName = this.firstName + ' ' + this.lastName;
-  Object.freeze(this);
-}
-// тоже самое только через writable:false
-function OnceNamedOne(first, last) {
-  Object.defineProperties(this, {
-    'firstName': {value:first, writable:false},
-    'lastName': {value:last, writable:false},
-    'fullName': {value:first + ' ' + last, writable:false}
-  });
-}
+//                                             Функция-конструктор
 
-
-// Назначение прототипа из обычной функции
-function reverse() {
-  return this.split('').reverse().join('');
-}
-String.prototype.reverse = reverse;
-console.log("String".reverse()); //=> "gnirtS"
-
-
-
-//                                       Функция-конструктор. Оператор new.
-
-// Функция-конструктор в ней задаются параметры/свойства для объектов данного "класса"
+// Функция-конструктор задает параметры/свойства для объектов данного "класса"
 function Fruit(color, shape) {
   this.color = color;
   this.shape = shape;
-  // можно так же добавить return чтобы функция конструктор чтото возвращала
+  // можно так же добавить return чтобы функция конструктор что-то возвращала
 }
-// В JavaScript мы можем создавать объекты, используя оператор new.
-const melon = new Fruit('yellow', 'round') // При создании объекта задаем ему параметры
-console.log(melon);               //=> Fruit { color: 'yellow', shape: 'round' }
-console.log(melon.color);         //=> 'yellow'
-console.log(melon['shape']);      //=> 'round'
-// Объекты наследуют методы базового класса Object
-console.log(Object.keys(melon));  //=> [ 'color', 'shape' ]
 
-// new - оператор
+// new - оператор для создания объектов(экземпляры соответсвующего "Класса")
+const melon = new Fruit('yellow', 'round');
+melon;               //=> Fruit { color: 'yellow', shape: 'round' }
+melon.color;         //=> 'yellow'
+melon['shape'];      //=> 'round'
+
+// Любые объекты наследуют методы базового класса Object
+Object.keys(melon);  //=> [ 'color', 'shape' ]
+
+
+
+//                                                Оператор new
+
+// new - оператор в JavaScript, который создает объекты
+
+// Объяснение 1:
 // Создает пустой объект (который мы назовем экземпляром), который прототипически наследуется от Constructor.prototype.
-// Привязывает конструктор к экземпляру (то есть это экземпляр) и вызывает конструктор с любыми переданными аргументами.
+// Привязывает конструктор к экземпляру и вызывает конструктор с любыми переданными аргументами.
 // Если возвращаемое значение Constructor является объектом (включая массивы, функции, даты, регулярные выражения и т. д.), операция оценивается для этого объекта.
 // В противном случае операция оценивается как экземпляр
 
-// new - оператор в JavaScript, который создает объекты, выполнив следующие три шага:
+// Объяснение 2:
 // 1. Создает новый пустой объект
 // 2. Устанавливает свойство `.__proto__` нового объекта в соответствии со свойством прототипа вызываемой функции
 // 3. Оператор вызывает функцию и передает новый объект как ссылку «this».
-// вот что new делает (или, по крайней мере, кажется, что делает):
-function New(func) {
+
+// Как примерно работает оператор new:
+function New(func) { // где func это например Fruit('yellow', 'round')
   var res = {};
   if (func.prototype !== null) res.__proto__ = func.prototype;
   var ret = func.apply(res, Array.prototype.slice.call(arguments, 1));
@@ -82,32 +50,69 @@ function New(func) {
 
 
 
-//                             Определение методов в функции конструктора(без прототипов)
+//                            Прототипы для конструктора(создание методов вне конструктора)
 
-// Присвоив функцию без имени или стрелочную функцию в свойство конструктора, создается метод для этого "класса"
+// При помощи прототипов функций, мы можем создавать функции для "класса" определенного конструктором вне его области. Имена функций относящихся к классу не должны совпадать с именами свойств объектов
+
+function Warrior(name) {
+  this._name = name; // если будем создавать функцию, то ее имя не должно быть равно имени переменной, потому называем свойство с нижним подчеркиванием
+}
+
+Warrior.prototype.name = function (par) { // если будем создавать функцию, то ее имя не должно быть равно имени переменной
+  if (par) this._name = par;
+  return this._name;
+}
+
+// Присвоение в прототип по имени функции. При такой записи некорректо работала стрелочная функция
+function toString() {
+  return `My name is ${this._name}`;
+}
+Warrior.prototype.toString = toString;
+
+// Создание статического метода класса при помощи прототипа
+Warrior.is = function(str){
+  return `Warrior is ${str}`
+}
+
+// Статический:
+console.log(Warrior.is(9000)); //=> Warrior is 9000
+
+// Объект и методы экземпляра:
+const boris = new Warrior("Boris");
+console.log(boris.toString()); //=> "My name is Boris"
+console.log(boris.name());     //=> "Boris"
+boris.name("Bobo");   // меняем значения свойства при помощи функции
+console.log(boris.name());     //=> "Bobo"
+console.log(boris._name);      //=> "Bobo"
+
+
+
+//                                  Определение методов в функции-конструкторе
+
+// Присвоив функцию без имени или стрелочную функцию в свойство конструктора, создается метод для этого "класса", тоесть метод в ЖС это функция присвоенная в свойство конструктора.
 function Warrior(name) {
   this._name = name;
-  this.toString = () => `My name is ${this._name}`;
   // Собственно поэтому при присвоении через конструктор и нельзя повторять имя свойсва в имени метода
-  this.name = function (par) {
+  this.name = function (par) { // кастомный сеттер, где мы используем замыкание, тк изменяем при помощи него свойство функции, что находится в области функции-класса
     if (par) this._name = par;
     return this._name;
-  }
+  };
+  this.toString = () => `My name is ${this._name}`;
 }
 const boris = new Warrior("Boris");
 console.log(boris);            //=> Warrior { _name: 'Boris', toString: [Function (anonymous)], name: [Function (anonymous)] }
 console.log(boris.toString);   //=> [Function (anonymous)]
 console.log(boris.toString()); //=> "My name is Boris"
 console.log(boris.name());     //=> "Boris"
-boris.name("Bobo");            // меняем значения свойства при помощи функции
+boris.name("Bobo");  // меняем значения свойства при помощи функции
 console.log(boris.name());     //=> "Bobo"
 console.log(boris._name);      //=> "Bobo"
 
 
-// Конструктор c при с замыканием, на примере счетчика
+// Конструктор с замыканием для обычной переменной, на примере счетчика
 function Counter() {
   let _count = 0; // просто переменная для замыкания
-  // Свойствами объекта будут анонимные функции использующие замыкание
+  // Свойствами объекта, тоесть методами "класса" будут анонимные функции, использующие замыкание
   this.check = function() { return _count; }
   this.increment = function() { _count++; }
 };
@@ -118,37 +123,15 @@ console.log(c.check()); //=> 1
 
 
 
-//                            Прототипы для конструктора(создание методов вне конструктора)
 
-// При помощи прототипов функций, мы можем создавать функции для "класса" определенного конструктором.
-// Имена функций относящихся к классу не должны совпадать с именами свойств объектов
-function Warrior(name) {
-  this._name = name;                      // если будем создавать функцию, то ее имя не должно быть равно имени переменной
-}
-Warrior.prototype.name = function (par) { // если будем создавать функцию, то ее имя не должно быть равно имени переменной
-  if (par) this._name = par;
-  return this._name;
-}
-Warrior.prototype.toString = function () {
-  return `My name is ${this._name}`;
-}
-const boris = new Warrior("Boris");
-console.log(boris.toString()); //=> "My name is Boris"
-console.log(boris.name());     //=> "Boris"
-boris.name("Bobo");            // меняем значения свойства при помощи функции
-console.log(boris.name());     //=> "Bobo"
-console.log(boris._name);      //=> "Bobo"
+//                        Метопрограммирование. Имя методу через переменную со строкой
 
-
-
-//                                   Имя методу через переменную со строкой
-
-// Можно создавать методы черес прототипы, используя для их названий строки
+// Можно создавать методы через прототипы, используя для их названий строки
 function Warrior(name) {
   this.name = name;
 }
 let someMethod = 'toString'; // Назначаем строку в переменную
-// Определяем название метода в прототипе через синтаксис [] с переменной внутри:
+// Определяем название метода в прототипе через синтаксис []:
 Warrior.prototype[someMethod] = function () {
   return `My name is ${this.name}`;
 }
@@ -156,15 +139,20 @@ const boris = new Warrior("Boris");
 console.log(boris.toString());      //=> "My name is Boris"
 
 
-// Этим способом мы можем создавать множество разных методов через один прототип, как на конвеере
-function HTMLGen() {} // создаем пустой конструктор
+// Этим способом мы можем создавать множество разных методов через один прототип:
+// 1. создаем пустой конструктор:
+function HTMLGen() {}
+// 2. Имена методов что соответсуют именам нужных тегов:
 const names = ['a', 'b', 'p', 'body', 'div', 'span', 'title'];
+// 3. Создаем функции этих тегов:
 names.forEach((tag) => {
   HTMLGen.prototype[tag] = function(content) {
-    return '<' + tag + '>' + content + '</' + tag + '>'
+    return `<${tag}>${content}</${tag}>`
   }
 })
+// 4. Объект генератора тегов:
 const g = new HTMLGen();
+// 5. Генерируем и применяем теги:
 let paragraph = g.p('Hello, World!');
 let block = g.div(paragraph);
 console.log(paragraph); //=> '<p>Hello, World!</p>'
@@ -172,7 +160,7 @@ console.log(block);     //=> '<div><p>Hello, World!</p></div>'
 
 
 
-//                                      Прототипы для базовых классаов JS
+//                                      Прототипы для базовых классов JS
 
 // Так же при помощи прототипов можно создавать или переопределять функции для уже существующих классов в JS
 
@@ -193,7 +181,7 @@ let arr = [1, 2, 3];
 arr.reverse();
 console.log(arr); //=> [ 3, 2, 1 ]
 
-// Использование функции как параметра в прототипе, на примере нового метода reject для класса Array
+// Использование функции как параметра в прототипе, на примере создания нового метода reject для класса Array
 Array.prototype.reject = function (func) {
   let res = this.filter(e => !func(e));
   return res;
@@ -214,11 +202,13 @@ function Cylon(model){
   this.model = model;
   this.attack = function() { return "Destroy all humans!";}     // как метод класса (наследуется)
 }
-// Клас наследник через синтаксис с __proto__
+
+// Класс наследник через синтаксис с __proto__
 function HumanSkin(model){
   this.__proto__= new Cylon(model); // наследование при помощи свойства __proto__ и объекта материнской функции Cylon
   this.infiltrate = function() { return "Infiltrate the colonies";} // уникальный метод подкласса
 }
+
 const hs = new HumanSkin('Vasya');
 console.log(hs.model);        //=> 'Vasya'
 console.log(hs.attack());     //=> 'Destroy all humans!'
@@ -228,18 +218,28 @@ console.log(hs.infiltrate()); //=> 'Infiltrate the colonies'
 
 //                                       Геттеры и сеттеры через прототип
 
-// Вам нужно будет сохранить его как общедоступное свойство в вашем экземпляре. Обычно используется соглашение, согласно которому _ as обозначает закрытый элемент.
-function Person(age) {
-  this.age(age);
+
+// 1. Геттеры и сеттеры для нового свойства просто назначаем через присвоения объккта с ними в прототип
+function NamedOne(first, last){
+  this.firstName = first;
+  this.lastName = last;
 }
-Person.prototype.age = function (num) {
-  this._age = num;
+NamedOne.prototype = {
+  get fullName(){
+    return this.firstName + ' ' + this.lastName;
+  },
+  set fullName(value){
+    [this.firstName, this.lastName] = value.split(" ");
+  }
 }
-const per = new Person(10);
-console.log(per._age); //=> 10
+const no = new NamedOne('Vasya', 'Pupkin');
+// Геттеры и сеттеры используются так же, как если бы это были обычные свойства:
+console.log(no.fullName); //=> Vasya Pupkin
+no.fullName = 'Sanya Xui';
+console.log(no.fullName); //=> Sanya Xui
 
 
-// 1. Object.defineProperty над прототипом
+// 2а. Геттеры и сеттеры для уже существующих свойств. Object.defineProperty принимающий прототип, имя для геттера и сеттера и объект с методами
 function Person(age, name) {
   this.name = name;
   this.age  = age;
@@ -253,14 +253,13 @@ Object.defineProperty(Person.prototype, "age", {
     this._age = num;
   }
 });
-// Используется так же, как если бы это было обычное свойство:
 const person = new Person(20, "Jane Doe");
 console.log(person.age); // => 20
 person.age = 15;
 console.log(person.age); // => 15
 
 
-// 2. Object.defineProperty в конструкторе c this для установки нового свойства
+// 2б. Геттеры и сеттеры для уже существующих свойств. Object.defineProperty в конструкторе c this для установки нового свойства
 function NamedOne(first, last) {
   this.firstName = first;
   this.lastName = last;
@@ -280,45 +279,40 @@ no.fullName = 'Sanya Xui';
 console.log(no.fullName); //=> Sanya Xui
 
 
-// 3. Прототип для геттеров и сеттеров нового свойства
-function NamedOne(first, last){
+
+//                                       Запрет на изменение свойств объекта
+
+// Object.freeze - запрещает изменять свойства объекта (как только гетткры)
+function OnceNamedOne(first, last) {
   this.firstName = first;
   this.lastName = last;
+  this.fullName = this.firstName + ' ' + this.lastName;
+  Object.freeze(this);
 }
-NamedOne.prototype = {
-  get fullName(){
-    return this.firstName + ' ' + this.lastName;
-  },
-  set fullName(value){
-    [this.firstName, this.lastName] = value.split(" ");
-  }
+
+// тоже самое только через writable:false
+function OnceNamedOne(first, last) {
+  Object.defineProperties(this, {
+    'firstName': {value:first, writable:false},
+    'lastName': {value:last, writable:false},
+    'fullName': {value:first + ' ' + last, writable:false}
+  });
 }
-const no = new NamedOne('Vasya', 'Pupkin');
-console.log(no.fullName); //=> Vasya Pupkin
-no.fullName = 'Sanya Xui';
-console.log(no.fullName); //=> Sanya Xui
 
 
 
 //                                    Класс как переменная объекта другого класса
 
+function Hive() {
+  this.pollen = 100;
+}
+Hive.prototype.getPollen = function() { return this.pollen; }
+Hive.prototype.addPollen = function(pollen) { this.pollen += pollen; }
+
 function Bee(capacity, hive) {
   this.capacity = capacity;
   this.hive = hive; // пчела имеет объект улья в переменной
 }
-
-function Hive() {
-  this.pollen = 100;
-}
-
-Hive.prototype.getPollen = function() {
-  return this.pollen;
-}
-
-Hive.prototype.addPollen = function(pollen) {
-  this.pollen += pollen;
-}
-
 Bee.prototype.unloadPollen = function() {
   this.hive.addPollen(this.capacity); // используем улей данной пчелы чтоб добавить в него мед
 }
@@ -337,7 +331,8 @@ console.log(hive.pollen); //=> 105
 
 // Оператор new — создает сильно связанный код, который сложно поддерживать и тестировать.
 // Некоторые шаблоны для уменьшения связанности — это фабрики объектов или внедрение зависимостей.
-// struct() - Эта функция получает функцию-конструктор и, возможно, некоторые аргументы и возвращает новый объект, созданный с помощью функции и переданных аргументов
+
+// struct() - Эта функция получает функцию-конструктор и  аргументы и возвращает новый объект, созданный с помощью функции и переданных аргументов
 
 // Функция конструктор с прототипами(класс)
 function Greeting(name) {
