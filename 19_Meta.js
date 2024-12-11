@@ -1,14 +1,9 @@
-//                                      Аналоги рубишного send
+//                                Вызов методов и свойств с [] от строки их названия
 
-// eval с аргументом имени функции в виде строки - возвращает эту функцию
-function testFunction(arg) {
-  return arg + 1;
-}
-let functionName = 'testFunction'
-console.log( eval(functionName)(2) ); //=> 3
+// Методы и свойства объекта можно вызфвать через синтаксис объект['имяМетода']()
 
 
-// Вызов методов с синтаксисом свойств объекта, через объект['имяМетода']()
+// 1. ES2015 class синтаксис:
 class X {
   constructor(par) {
     this.par = par;
@@ -30,7 +25,7 @@ console.log( x['method2']() );  //=> 1
 console.log( x['method3'](5) ); //=> 10
 
 
-// Тоже в функциональном стиле
+// 2. При помощи прототипов:
 function X(par) {
   this.par = par;
 }
@@ -40,6 +35,17 @@ X.prototype.method3 = function(arg) {
 const x = new X('AAA');
 console.log( x['par'] );        //=> 'AAA'
 console.log( x['method3'](5) ); //=> 10
+
+
+
+//                                    Вызов функций при помощи функции eval
+
+// eval с аргументом имени функции в виде строки - возвращает эту функцию
+function testFunction(arg) {
+  return arg + 1;
+}
+let functionName = 'testFunction'
+console.log( eval(functionName)(2) ); //=> 3
 
 
 

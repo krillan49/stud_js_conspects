@@ -4,8 +4,12 @@
 
 //                                             method_missing
 
-// Аналог рубишного method_missing в функциональном стиле
+// Аналог рубишного method_missing при помощи Proxy
+
+
+// 1. При помощи прототипов:
 function enableNoSuchMethod(obj) {
+  // функция передает в объект класса Proxy наш объект из аргумента и дополнительный объект с методом get:
   return new Proxy(obj, {
     get(target, p) {
       if (p in target) {
@@ -21,20 +25,22 @@ function enableNoSuchMethod(obj) {
 // Используем для объектов нашего класса Dummy
 function Dummy() {
   this.ownProp1 = "value1";
-  return enableNoSuchMethod(this);
+  return enableNoSuchMethod(this); // передаем в функцию enableNoSuchMethod текущий инстанс-объект и она, а соответсвенно и new Dummy возвращает объкет обернутый в Proxy-объект:
 }
 // __noSuchMethod__   - название можно любое (? но правильнее с подчеркиваниями ?)
 Dummy.prototype.__noSuchMethod__ = function(name, args) {   // typeof name //=> string
   return `No such method ${name} called with ${args}`;
 };
 const instance = new Dummy();
-console.log(instance.ownProp1);
+console.log(instance);                        //=> Dummy { ownProp1: 'value1' }
+console.log(instance.ownProp1);               //=> value1
+// Вызываем несуществующие методы:
 console.log(instance.someName(1, 2));         //=> No such method someName called with 1,2
 console.log(instance.xyz(3, 4));              //=> No such method xyz called with 3,4
 console.log(instance.doesNotExist("a", "b")); //=> No such method doesNotExist called with a,b
 
 
-// Аналог рубишного method_missing с синтаксисом класса
+// 2. ES2015 class синтаксис:
 class Character {
   constructor(name) {
     this.name = name;

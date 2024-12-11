@@ -1,8 +1,8 @@
 //                                         Операторы ошибок trow и catch
 
-// trow - вызывает новое исключение
+// 1. trow - вызывает новое исключение
 
-// Вызовем новые исключения в зависимости от типа данных
+// Вызовем новые исключения в зависимости от типа данных:
 function getRectArea(n) {
   if (isNaN(n)) {
     // вариант 1
@@ -15,7 +15,7 @@ function getRectArea(n) {
     throw 'Parameter is not a number!';
   }
 }
-// Теперь при передачи неправильного типа данных получим вызванную в методе ошибку
+// Теперь при передачи неправильного типа данных получим вызванную в методе ошибку:
 getRectArea('A');
 //=> Error: Parameter is not a number!
 //=> Error: RangeError
@@ -23,7 +23,7 @@ getRectArea('A');
 //=> Parameter is not a number!
 
 
-// catch - обрабатывает исключение
+// 2. catch - обрабатывает исключение
 
 // Вызовем исключение
 function getRectArea(n) {
@@ -31,20 +31,21 @@ function getRectArea(n) {
   return n;
 }
 
+// Можно сделать доп функцию для вывода сообщения в блоке catch
 const rescueSome = (e) => console.log (`Rescue ${e} do something`);
 
 // Обработаем исключение(вместо выброса ошибки сработает наш код)
 try {
   getRectArea('A');
 } catch (e) {
-  // Можем исполнить какойто код:
+  // Можно исполнить функцию для обработки ошибки:
   rescueSome(e); //=> 'Rescue Error: Parameter is not a number! do something'
-  // Можем вывести чтото
+  // Можно просто вывести сообщение:
   console.log('Some'); //=> 'Some'
-  // Можем вывести все сообщение об ошибке в виде строки без вызова самой ошибки
-  console.log(e); //=> 'Error: Parameter is not a number!  ... '
-  // При помощи console.error мы можем вывести ошибку как и обычно
-  console.error(e); //=> Error: Parameter is not a number!
+  // Можно вывести все сообщение об ошибке в виде строки без вызова самой ошибки
+  console.log(e);      //=> 'Error: Parameter is not a number!  ... '
+  // При помощи console.error можно вывести все сообщения ошибки как буд-то она вызвана, (?но далее код будет работать)
+  console.error(e);    //=> Error: Parameter is not a number!
 }
 
 
