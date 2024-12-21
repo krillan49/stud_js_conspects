@@ -1,14 +1,12 @@
-//                                                  Mocha
+//                                                   Mocha
 
 // https://github.com/mochajs/mocha
 
-// Mocha — это многофункциональный тестовый фреймворк JavaScript, работающий на Node.js и браузере. Тесты Mocha запускаются последовательно, что позволяет создавать гибкие и точные отчеты, сопоставляя неперехваченные исключения с правильными тестовыми случаями.
+// Mocha — это многофункциональный тестовый фреймворк JavaScript, работающий и на Node.js и в браузере. Тесты Mocha запускаются последовательно, что позволяет создавать гибкие и точные отчеты, сопоставляя неперехваченные исключения с правильными тестовыми случаями.
 
-// С помощью mocha вы описываете то, что тестируете, вызывая функцию describe, которая принимает тест name и test code.
-describe('Testing class Foo', function() { });
-
-// Внутри параметра функции describe вы определяете свои тестовые случаи, вызывая функцию it. it получает тест description и code и запускает утверждения.
+// describe - функция описываете то, что будем тестировать, она принимает описание в виде строки и функцию, в которой будет вызван код отдельных тестов
 describe('Testing class Foo', function() {
+  // it - функция, определяет отдельный тестовый случай, она получает описание теста в виде строки и функцию с кодом теста, которая запускает утверждения. Заисывается внутри функции-параметра, который принимает describe
   it('foo should contain a value', function() {
     Test.expect(foo);
   });
@@ -27,19 +25,19 @@ describe('Testing class Foo', function() {
 // expect - ожидает true или false, тест не проходит, если значение было false
 Test.expect(passed, msg);
 
-// assertEquals - ожидает actual быть равным expected
+// assertEquals - ожидает что actual равен expected
 Test.assertEquals(actual, expected, msg);
-// assertNotEquals - ожидается actual, что будет отличаться отexpected
+// assertNotEquals - ожидается actual, что будет отличаться от expected
 Test.assertNotEquals(actual, unexpected, msg);
 
-// assertSimilar - ожидается actual равенство expected(может использоваться для сравнения массивов)
+// assertSimilar - ожидается что actual идентичен expected (может использоваться для сравнения массивов)
 Test.assertSimilar(actual, expected, msg);
-// assertNotSimilar - ожидается actual, что будет отличаться от expected(может использоваться для сравнения массивов)
+// assertNotSimilar - ожидается что actual, будет отличаться от expected (может использоваться для сравнения массивов)
 Test.assertNotSimilar(actual, unexpected, msg);
 
 // expectError - ожидает функцию, которая будет выполнена, и должна выдать ошибку
-Test.expectError(msg, fn); // fn - функция(? которую проверяем ?)
-// expectNoError - ожидает функцию, которая будет выполнена, и не ожидает, что она выдаст ошибку
+Test.expectError(msg, fn); // fn - функция которую проверяем
+// expectNoError - ожидает функцию, которая будет выполнена, и не выдаст ошибку
 Test.expectNoError(msg, fn);
 
 
@@ -56,3 +54,15 @@ chai.config.showDiff = false; // turn off reporter diff display
 
 // config.truncateThreshold (по умолчанию 40) - устанавливает порог длины для фактических и ожидаемых значений в ошибках утверждения. Если этот порог превышен, значение усекается.
 chai.config.truncateThreshold = 0; // disable truncating
+
+
+
+
+
+
+
+
+
+
+
+// 

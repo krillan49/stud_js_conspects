@@ -38,17 +38,6 @@ console.log( x['method3'](5) ); //=> 10
 
 
 
-//                                    Вызов функций при помощи функции eval
-
-// eval с аргументом имени функции в виде строки - возвращает эту функцию
-function testFunction(arg) {
-  return arg + 1;
-}
-let functionName = 'testFunction'
-console.log( eval(functionName)(2) ); //=> 3
-
-
-
 
 
 
