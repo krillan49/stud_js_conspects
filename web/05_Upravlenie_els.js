@@ -27,6 +27,9 @@ pTag.style.backgroundColor = 'yellow'; // имя стиля пишем в кам
 // запишем внутрь тела тега новый контент, можно писать не только текст но и теги
 pTag.innerHTML = "some<i>text</i>";
 
+// Так же можем повесить на тег событие, например onclic
+pTag.onclick = function() { alert('Hello'); };
+
 // если нужно обратиться к одному свойству переменную создавать не обязательно
 document.getElementById('text').style.fontSize = '2rem'
 
