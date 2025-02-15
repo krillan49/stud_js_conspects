@@ -3,19 +3,52 @@
   <head>
     <meta charset="utf-8">
     <title>jquery</title>
-    <!-- <script src="/vendor/jquery-1.9.1.min.js"></script> --> <!-- Подключение Вар 1 бутстрапное ? -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Подключение Вар 2 -->
+
+    <!-- Подключение Вар 1  - бутстрапное из нашего проекта -->
+    <!-- <script src="/vendor/jquery-1.9.1.min.js"></script> -->
+
+    <!-- Подключение Вар 2 - через CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script src="09_jquery.js"></script>
   </head>
   <body>
 
+    <!--                                              Синтаксис -->
+
+    <div id="aaa">Aaaaaaaaaaaaaaaaaaaaaa</div>
+    <div class="bbb">Ввввввввввввввввввввввв</div>
+    <div id="ccc">Cccccccccccccccccccccccccccc</div>
+
+
+
+    <!--                                            jQuery функции -->
+
+    <!-- text, val -->
     <button type="button" onclick="actionPush('Текст для замены', 'Текст для поля')">Экшон</button>
-
     <div id="cart">Заменим на текст</div>
+    <div><input name="orders" id="orders_input"></div>
 
-    <div>
-  		<input name="orders" id="orders_input">
-    </div>
+    <!-- hide, click, next, show, slideToggle -->
+    <div class="member">Click to Open</div>
+    <div class="member-hide">Hide-Element1</div>
+    <div class="member2">Click to Hide|Open2</div>
+    <div class="member-hide2">Hide-Element2</div>
 
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->

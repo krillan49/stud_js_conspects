@@ -36,7 +36,7 @@ function checkForm(form) {
   let result = confirm("Перейти на другую страницу?");
   if (result) {
     window.location = 'https://itproger.com/course/javascript/12';
-    return false; // для перехода на другую страницу нужно не перезагружать эту страницу
+    return false; // для перехода на другую страницу нужно не перезагружать эту страницу, тк по умолчанию "return true" перезвгрузит(обновит) ту же самую страницу
   }
 
   return true;
