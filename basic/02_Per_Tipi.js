@@ -34,6 +34,10 @@ var a = 1, b = 2;
 console.log(a); //=> 2
 console.log(b); //=> 1
 
+// 
+let [a, b] = [1, 2];
+console.log(a, b); //=> 1 2
+
 
 
 //                                   typeof и instanceof. Определить тип данных
